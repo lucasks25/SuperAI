@@ -6,28 +6,28 @@ import { motion } from "framer-motion"
 const CASES = [
   {
     value: "80%",
-    company: "Clínica Odonto+",
-    desc: "automatizou 80% dos agendamentos com Agentes IA da SuperAI",
+    company: "Only Tourism",
+    desc: "automates 80% of visa inquiries with AI Agents",
   },
   {
-    value: "3×",
-    company: "Viva Imóveis",
-    desc: "triplicou a conversão de leads qualificados em 45 dias com Agentes IA",
+    value: "81.4%",
+    company: "Diskat",
+    desc: "automates sales for an 81.4% conversion rate with AI Agents",
   },
   {
-    value: "60%",
-    company: "OficinaPro",
-    desc: "reduziu faltas e cancelamentos com confirmações automáticas via Agentes IA",
+    value: "24%",
+    company: "GETUTOR",
+    desc: "increased bookings by 24% in 2 months with AI Agents",
   },
   {
-    value: "95%",
-    company: "Agência Pulse",
-    desc: "resolve 95% dos chamados sem intervenção humana com Agentes IA",
+    value: "200%",
+    company: "iMotorbike",
+    desc: "captures 200% more leads with AI Agents",
   },
 ]
 
 function LiveCounter() {
-  const [count, setCount] = useState(13_200)
+  const [count, setCount] = useState(2_086_000)
   const [started, setStarted] = useState(false)
   const ref = useRef<HTMLSpanElement>(null)
 
@@ -41,17 +41,17 @@ function LiveCounter() {
     return () => ob.disconnect()
   }, [started])
 
-  // Quick count-up 13200 → 15000 on start
+  // Quick count-up 2_086_000 → 2_086_453 on start
   useEffect(() => {
     if (!started) return
-    const target = 15_000
+    const target = 2_086_453
     const duration = 2800
     const steps = 60
-    const increment = (target - 13_200) / steps
+    const increment = (target - 2_086_000) / steps
     let step = 0
     const id = setInterval(() => {
       step++
-      setCount(Math.min(Math.round(13_200 + increment * step), target))
+      setCount(Math.min(Math.round(2_086_000 + increment * step), target))
       if (step >= steps) clearInterval(id)
     }, duration / steps)
     return () => clearInterval(id)
@@ -81,15 +81,15 @@ export default function MetricsSection() {
       style={{ background: "#000000" }}
       aria-label="Números"
     >
-      {/* Purple glow behind counter */}
+      {/* Blue glow behind counter */}
       <div
         className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
         style={{
-          top: "-60px",
-          width: "700px",
-          height: "420px",
-          background: "radial-gradient(ellipse at center, rgba(124,111,245,0.28) 0%, rgba(124,111,245,0.08) 45%, transparent 72%)",
-          filter: "blur(8px)",
+          top: "-120px",
+          width: "900px",
+          height: "600px",
+          background: "radial-gradient(ellipse at center, rgba(56,189,248,0.18) 0%, rgba(37,99,235,0.08) 45%, transparent 75%)",
+          filter: "blur(60px)",
         }}
       />
 
@@ -97,7 +97,7 @@ export default function MetricsSection() {
 
         {/* Label */}
         <p className="text-center text-[12px] font-medium tracking-[0.18em] uppercase mb-4" style={{ color: "rgba(255,255,255,0.30)" }}>
-          Conversas atendidas com sucesso por Agentes IA
+          Number of conversations successfully handled by AI Agents
         </p>
 
         {/* Big live counter */}
