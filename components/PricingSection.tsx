@@ -1,9 +1,6 @@
 "use client"
 
-// Effects: Pricing Card Lift · Recommended Plan Glow · Feature Check Reveal · CTA Button Shine
-import { motion } from "framer-motion"
-import { CheckCircle } from "lucide-react"
-import SectionHeader from "./SectionHeader"
+import { ArrowRight } from "lucide-react"
 import Reveal from "./Reveal"
 import { PRICING_PLANS, WHATSAPP_URL } from "@/lib/constants"
 
@@ -11,61 +8,95 @@ export default function PricingSection() {
   return (
     <section
       id="planos"
-      className="py-16 relative overflow-hidden bg-[#F2F2F2]"
+      className="bg-[#F2F2F2] py-20 md:py-32"
       aria-label="Planos"
     >
-      <div className="container-xl max-w-6xl">
-        <div className="bg-white rounded-[40px] border border-[#1A1A1A]/10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.06)] p-10 md:p-16 lg:p-20">
-          <SectionHeader
-            theme="light"
-            badge="Planos"
-            title="Escolha o plano ideal para sua operação"
-            subtitle="Transparência total para você escalar sem surpresas."
-            className="mb-16"
-            align="left"
-          />
+      <div className="mx-auto w-full max-w-[1440px] px-2 md:px-4 lg:px-6">
+        <div
+          className="relative z-10 border border-[#1A1A1A]/[0.12] bg-[#F8F7F2] rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.04)] overflow-hidden"
+          style={{ clipPath: "inset(0 round 16px)" }}
+        >
+          {/* Header */}
+          <div className="flex min-h-[78px] items-center justify-between gap-4 border-b border-[#1A1A1A]/[0.12] px-5 md:px-8">
+            <Reveal>
+              <h2 className="text-[24px] font-medium leading-tight text-[#22211F] md:text-[31px]">
+                Planos
+              </h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <p className="hidden text-[13px] text-[#1A1A1A]/40 sm:block">
+                Proposta personalizada para cada operação
+              </p>
+            </Reveal>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Plans */}
+          <div className="grid grid-cols-1 md:grid-cols-3">
             {PRICING_PLANS.map((plan, i) => (
-              <Reveal key={plan.name} delay={0.1 * i}>
-                <div
-                  className={`relative rounded-3xl p-8 flex flex-col h-full transition-all border ${
-                    plan.highlight 
-                      ? "bg-[#1A1A1A] text-white border-transparent" 
-                      : "bg-[#F7F7F7] text-[#1A1A1A] border-[#1A1A1A]/5"
-                  }`}
-                >
-                  <div className="mb-8">
-                    <h3 className={`text-xl font-bold mb-2 ${plan.highlight ? "text-white" : "text-[#1A1A1A]"}`}>{plan.name}</h3>
-                    <p className={`text-sm ${plan.highlight ? "text-white/60" : "text-[#1A1A1A]/60"}`}>{plan.description}</p>
-                  </div>
-
-                  <ul className="flex flex-col gap-4 flex-1 mb-10">
-                    {plan.features.map((feature, fi) => (
-                      <li
-                        key={feature}
-                        className={`flex items-start gap-3 text-[13px] font-medium ${plan.highlight ? "text-white/80" : "text-[#1A1A1A]/80"}`}
+              <div
+                key={plan.name}
+                className={`relative flex flex-col ${
+                  i !== PRICING_PLANS.length - 1
+                    ? "border-b md:border-b-0 md:border-r border-[#1A1A1A]/[0.12]"
+                    : ""
+                } ${plan.highlight ? "bg-[#171717]" : "bg-[#F8F7F2]"}`}
+              >
+                {plan.badge && (
+                  <span className="absolute top-0 right-0 px-3 py-1 text-[9px] font-bold uppercase tracking-widest bg-[#7C6FF5] text-white">
+                    {plan.badge}
+                  </span>
+                )}
+                <Reveal delay={0.08 * i}>
+                  <div className="flex flex-col h-full px-6 py-10 md:px-8">
+                    <div className="mb-8">
+                      <h3
+                        className={`text-[32px] font-medium tracking-tight mb-3 ${
+                          plan.highlight ? "text-white" : "text-[#171717]"
+                        }`}
                       >
-                        <CheckCircle size={16} className={`shrink-0 ${plan.highlight ? "text-[#7C6FF5]" : "text-[#7C6FF5]"}`} />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                        {plan.name}
+                      </h3>
+                      <p
+                        className={`text-[13px] leading-relaxed ${
+                          plan.highlight ? "text-white/45" : "text-[#1A1A1A]/45"
+                        }`}
+                      >
+                        {plan.description}
+                      </p>
+                    </div>
 
-                  <motion.a
-                    href={WHATSAPP_URL}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`block text-center py-4 rounded-xl text-[13px] font-bold transition-all ${
-                      plan.highlight 
-                        ? "bg-white text-[#1A1A1A] hover:bg-gray-100" 
-                        : "bg-[#1A1A1A] text-white hover:bg-black"
-                    }`}
-                  >
-                    {plan.cta}
-                  </motion.a>
-                </div>
-              </Reveal>
+                    <ul className="flex flex-col gap-3.5 flex-1 mb-12">
+                      {plan.features.map((feature) => (
+                        <li
+                          key={feature}
+                          className={`flex items-start gap-3 text-[13px] font-medium leading-snug ${
+                            plan.highlight ? "text-white/65" : "text-[#1A1A1A]/65"
+                          }`}
+                        >
+                          <span
+                            className={`mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full ${
+                              plan.highlight ? "bg-[#7C6FF5]" : "bg-[#171717]"
+                            }`}
+                          />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <a
+                      href={WHATSAPP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider transition-opacity hover:opacity-60 ${
+                        plan.highlight ? "text-white" : "text-[#171717]"
+                      }`}
+                    >
+                      {plan.cta}
+                      <ArrowRight size={13} />
+                    </a>
+                  </div>
+                </Reveal>
+              </div>
             ))}
           </div>
         </div>
