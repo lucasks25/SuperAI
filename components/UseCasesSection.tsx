@@ -237,7 +237,7 @@ export default function UseCasesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className={\`rounded-[24px] p-8 flex flex-col \${c.colSpan}\`}
+              className={`rounded-[24px] p-8 flex flex-col ${c.colSpan}`}
               style={{
                 background: "rgba(255,255,255,0.02)",
                 border: "1px solid rgba(255,255,255,0.06)",
