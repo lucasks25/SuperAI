@@ -2,9 +2,13 @@
 
 import dynamic from "next/dynamic"
 import Reveal from "./Reveal"
-import { IntegrationsOrbit } from "@/remotion/src/IntegrationsOrbit"
 
-const Player = dynamic(() => import("@remotion/player").then((m) => m.Player), { ssr: false })
+const IntegrationsPlayer = dynamic(() => import("./IntegrationsPlayer"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full aspect-[1200/700] bg-[#F0EFEb] animate-pulse" />
+  ),
+})
 
 export default function IntegrationsSection() {
   return (
@@ -32,20 +36,8 @@ export default function IntegrationsSection() {
             </Reveal>
           </div>
 
-          {/* Remotion Player */}
-          <div className="w-full bg-[#F8F7F2]">
-            <Player
-              component={IntegrationsOrbit}
-              durationInFrames={300}
-              fps={30}
-              compositionWidth={1200}
-              compositionHeight={700}
-              style={{ width: "100%", aspectRatio: "1200/700" }}
-              autoPlay
-              loop
-              controls={false}
-            />
-          </div>
+          {/* Remotion Player — client-only */}
+          <IntegrationsPlayer />
         </div>
       </div>
     </section>
