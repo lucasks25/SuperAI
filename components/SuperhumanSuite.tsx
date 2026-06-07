@@ -11,6 +11,7 @@ import {
   Mail,
 } from "lucide-react"
 import Reveal from "./Reveal"
+import { WHATSAPP_URL } from "@/lib/constants"
 
 type VisualVariant = "inbox" | "writer" | "workspace" | "assistant" | "email"
 
@@ -19,13 +20,13 @@ const SUITE_FEATURES = [
     id: "email",
     tab: "E-mail",
     eyebrow: "E-mail Automático",
+    stat: "↓ 80% tempo de resposta",
     icon: Mail,
-    title: "Triagem e Respostas por E-mail",
+    title: "Triagem e respostas por e-mail, no automático",
     description:
-      "A IA lê a caixa de entrada, responde mensagens rotineiras e encaminha casos complexos para o setor responsável.",
-    link: "Saiba mais sobre e-mail",
+      "A IA lê a caixa de entrada, responde mensagens rotineiras e encaminha casos complexos para o setor responsável — sem ninguém precisar abrir o cliente.",
     bullets: [
-      "Interpreta o contexto e urgência",
+      "Interpreta contexto e urgência de cada mensagem",
       "Gera rascunhos ou envia respostas automáticas",
       "Encaminha orçamentos para a equipe comercial",
       "Reduz o tempo de resposta em até 80%",
@@ -37,11 +38,11 @@ const SUITE_FEATURES = [
     id: "atendimento",
     tab: "Atendimento",
     eyebrow: "Atendimento",
+    stat: "3× mais conversas simultâneas",
     icon: MessageCircle,
     title: "O agente mais produtivo para atender clientes",
     description:
-      "Responda leads e clientes com contexto, velocidade e uma voz que parece da sua equipe.",
-    link: "Saiba mais sobre atendimento",
+      "Responda leads e clientes com contexto, velocidade e uma voz que parece da sua equipe — no WhatsApp, e-mail ou qualquer canal.",
     bullets: [
       "Responde rápido o que importa",
       "Mantém contexto de cada conversa",
@@ -54,12 +55,12 @@ const SUITE_FEATURES = [
   {
     id: "sdr",
     tab: "SDR",
-    eyebrow: "SDR",
+    eyebrow: "SDR com IA",
+    stat: "2× mais leads qualificados",
     icon: Target,
-    title: "SDR de IA que qualifica oportunidades",
+    title: "SDR de IA que qualifica oportunidades reais",
     description:
-      "Transforme conversas soltas em reunioes prontas para venda, com criterio e timing.",
-    link: "Saiba mais sobre SDR",
+      "Transforme conversas soltas em reuniões prontas para venda, com critério e timing — sem depender de SDR humano para cada lead.",
     bullets: [
       "Qualifica leads automaticamente",
       "Identifica urgência, perfil e intenção",
@@ -72,12 +73,12 @@ const SUITE_FEATURES = [
   {
     id: "agenda",
     tab: "Agenda",
-    eyebrow: "Agenda",
+    eyebrow: "Agendamento automático",
+    stat: "↓ 90% no-shows com lembretes",
     icon: Calendar,
-    title: "Agendamentos no piloto automatico",
+    title: "Agendamentos no piloto automático",
     description:
-      "Conecte calendario, regras e disponibilidade para marcar reunioes sem friccao.",
-    link: "Saiba mais sobre agenda",
+      "Conecte calendário, regras e disponibilidade para marcar reuniões sem fricção — o agente confirma, remarca e lembra o cliente.",
     bullets: [
       "Conecta Google Calendar e calendários da equipe",
       "Encontra horários livres em tempo real",
@@ -89,13 +90,13 @@ const SUITE_FEATURES = [
   },
   {
     id: "automacoes",
-    tab: "Automacoes",
-    eyebrow: "Automacoes",
+    tab: "Automações",
+    eyebrow: "Automações",
+    stat: "24/7 sem intervenção humana",
     icon: Workflow,
-    title: "IA que funciona dentro da sua operacao",
+    title: "IA que funciona dentro da sua operação",
     description:
-      "Integre CRM, planilhas, WhatsApp e processos internos para sua agencia escalar.",
-    link: "Saiba mais sobre automacoes",
+      "Integre CRM, planilhas, WhatsApp e processos internos para sua agência escalar — sem depender de operações manuais repetitivas.",
     bullets: [
       "Conecta suas ferramentas favoritas",
       "Atualiza dados sem trabalho manual",
@@ -187,9 +188,14 @@ export default function SuperhumanSuite() {
                     <div className="flex flex-col justify-between px-5 py-9 md:px-6 md:py-12 lg:px-8">
                       <div>
                         <Reveal delay={0.04}>
-                          <div className="mb-6 flex items-center gap-2.5 text-[12px] font-medium text-[#22211F]/[0.65]">
-                            <Icon size={14} color={feature.accent} strokeWidth={2.5} />
-                            <span>{feature.eyebrow}</span>
+                          <div className="mb-6 flex items-center justify-between gap-3 flex-wrap">
+                            <div className="flex items-center gap-2.5 text-[12px] font-medium text-[#22211F]/[0.65]">
+                              <Icon size={14} color={feature.accent} strokeWidth={2.5} />
+                              <span>{feature.eyebrow}</span>
+                            </div>
+                            <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1" style={{ background: `${feature.accent}18`, color: feature.accent }}>
+                              {feature.stat}
+                            </span>
                           </div>
                         </Reveal>
 
@@ -207,11 +213,13 @@ export default function SuperhumanSuite() {
 
                           <Reveal delay={0.16}>
                             <a
-                              href="#contato"
-                              className="mt-6 inline-flex items-center gap-2 text-[13px] font-medium text-[#6E4BD8] transition-opacity hover:opacity-70"
+                              href={WHATSAPP_URL}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="mt-6 inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-[#6E4BD8] transition-opacity hover:opacity-70"
                             >
-                              {feature.link}
-                              <ArrowRight size={14} />
+                              Falar com especialista
+                              <ArrowRight size={13} />
                             </a>
                           </Reveal>
                         </div>
@@ -416,7 +424,7 @@ function AssistantMockup() {
               <Bot size={18} />
             </div>
             <p className="text-[12px] font-semibold leading-relaxed text-[#171717]">
-              Fluxo criado: lead qualificado, CRM atualizado e reuniao marcada.
+              Fluxo criado: lead qualificado, CRM atualizado e reunião marcada.
             </p>
             <div className="mx-auto mt-5 h-8 w-28 bg-[#3B1D2C] text-[9px] font-semibold leading-8 text-white">
               Executar agora

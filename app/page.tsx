@@ -2,7 +2,10 @@ import Navbar from "@/components/Navbar"
 import Hero from "@/components/Hero"
 import LogoCloud from "@/components/LogoCloud"
 import SuperhumanSuite from "@/components/SuperhumanSuite"
+import MetricsSection from "@/components/MetricsSection"
+import BeforeAfterSection from "@/components/BeforeAfterSection"
 import SDRSection from "@/components/SDRSection"
+import UseCasesSection from "@/components/UseCasesSection"
 import HowItWorksSection from "@/components/HowItWorksSection"
 import IntegrationsSection from "@/components/IntegrationsSection"
 import BecomingSuperhuman from "@/components/BecomingSuperhuman"
@@ -17,9 +20,12 @@ export default function Home() {
       <Hero />
       <LogoCloud />
       <SuperhumanSuite />
+      <MetricsSection />
+      <BeforeAfterSection />
       <div id="solucoes">
         <SDRSection />
       </div>
+      <UseCasesSection />
       <HowItWorksSection />
       <IntegrationsSection />
       <BecomingSuperhuman />
