@@ -6,6 +6,7 @@ import MetricsSection from "@/components/MetricsSection"
 import BeforeAfterSection from "@/components/BeforeAfterSection"
 import SDRSection from "@/components/SDRSection"
 import UseCasesSection from "@/components/UseCasesSection"
+import TestimonialsSection from "@/components/TestimonialsSection"
 import HowItWorksSection from "@/components/HowItWorksSection"
 import IntegrationsSection from "@/components/IntegrationsSection"
 import BecomingSuperhuman from "@/components/BecomingSuperhuman"
@@ -26,6 +27,7 @@ export default function Home() {
         <SDRSection />
       </div>
       <UseCasesSection />
+      <TestimonialsSection />
       <HowItWorksSection />
       <IntegrationsSection />
       <BecomingSuperhuman />
