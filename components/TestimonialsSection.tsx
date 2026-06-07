@@ -94,7 +94,7 @@ export default function TestimonialsSection() {
               {/* Background Image */}
               <div 
                 className="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                style={{ backgroundImage: \`url('\${s.bgImage}')\` }}
+                style={{ backgroundImage: `url('${s.bgImage}')` }}
               />
 
               {/* Gradient Overlays */}
