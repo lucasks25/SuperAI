@@ -27,7 +27,7 @@ const CASES = [
 ]
 
 function LiveCounter() {
-  const [count, setCount] = useState(2_086_000)
+  const [count, setCount] = useState(8_000)
   const [started, setStarted] = useState(false)
   const ref = useRef<HTMLSpanElement>(null)
 
@@ -41,17 +41,17 @@ function LiveCounter() {
     return () => ob.disconnect()
   }, [started])
 
-  // Quick count-up 2_086_000 → 2_086_453 on start
+  // Quick count-up 8_000 → 10_000 on start
   useEffect(() => {
     if (!started) return
-    const target = 2_086_453
+    const target = 10_000
     const duration = 2800
     const steps = 60
-    const increment = (target - 2_086_000) / steps
+    const increment = (target - 8_000) / steps
     let step = 0
     const id = setInterval(() => {
       step++
-      setCount(Math.min(Math.round(2_086_000 + increment * step), target))
+      setCount(Math.min(Math.round(8_000 + increment * step), target))
       if (step >= steps) clearInterval(id)
     }, duration / steps)
     return () => clearInterval(id)
@@ -85,11 +85,11 @@ export default function MetricsSection() {
       <div
         className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
         style={{
-          top: "-120px",
-          width: "900px",
-          height: "600px",
-          background: "radial-gradient(ellipse at center, rgba(56,189,248,0.18) 0%, rgba(37,99,235,0.08) 45%, transparent 75%)",
-          filter: "blur(60px)",
+          top: "-250px",
+          width: "1200px",
+          height: "800px",
+          background: "radial-gradient(ellipse at center, rgba(56,189,248,0.2) 0%, rgba(37,99,235,0.08) 40%, transparent 70%)",
+          filter: "blur(80px)",
         }}
       />
 
