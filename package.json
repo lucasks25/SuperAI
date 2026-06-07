@@ -11,6 +11,7 @@
     "render": "remotion render remotion/src/index.ts AgentDemo out/agent-demo.mp4"
   },
   "dependencies": {
+    "@remotion/player": "^4.0.473",
     "clsx": "^2.1.1",
     "framer-motion": "^11.5.0",
     "lenis": "^1.1.14",
