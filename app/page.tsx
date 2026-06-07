@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar"
 import Hero from "@/components/Hero"
 import LogoCloud from "@/components/LogoCloud"
-import PlatformShowcase from "@/components/PlatformShowcase"
+import SuperhumanSuite from "@/components/SuperhumanSuite"
 import MetricsSection from "@/components/MetricsSection"
 import BeforeAfterSection from "@/components/BeforeAfterSection"
 import UseCasesSection from "@/components/UseCasesSection"
@@ -19,7 +19,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <LogoCloud />
-      <PlatformShowcase />
+      <SuperhumanSuite />
       <MetricsSection />
       <BeforeAfterSection />
       <div id="solucoes">
