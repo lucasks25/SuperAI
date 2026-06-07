@@ -2,272 +2,257 @@
 
 import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
-import Reveal from "./Reveal"
 
-// ── Brand icons ──────────────────────────────────────────────────────────────
-const Icons = {
-  WhatsApp: () => (
-    <svg viewBox="0 0 32 32" width="24" height="24" fill="none">
-      <circle cx="16" cy="16" r="16" fill="#25D366" />
-      <path d="M22.5 19.3c-.3-.15-1.8-.9-2.1-1-.3-.1-.5-.15-.7.15-.2.3-.8 1-.95 1.2-.18.2-.35.22-.65.07a8.2 8.2 0 01-2.4-1.48 9 9 0 01-1.67-2.07c-.17-.3 0-.46.13-.6.13-.13.3-.35.44-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.96-2.32-.25-.6-.5-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.03 1-1.03 2.45s1.06 2.84 1.2 3.04c.16.2 2.08 3.17 5.03 4.45.7.3 1.25.48 1.68.62.7.22 1.34.19 1.84.11.56-.08 1.73-.7 1.97-1.39.25-.68.25-1.27.18-1.39-.07-.12-.27-.2-.57-.34z" fill="white" />
-    </svg>
-  ),
-  Calendar: () => (
-    <svg viewBox="0 0 32 32" width="24" height="24">
-      <rect width="32" height="32" rx="7" fill="white" />
-      <rect x="8" y="9" width="16" height="15" rx="2" fill="none" stroke="#4285F4" strokeWidth="1.5" />
-      <rect x="11" y="7" width="2.5" height="4" rx="1.2" fill="#EA4335" />
-      <rect x="18.5" y="7" width="2.5" height="4" rx="1.2" fill="#EA4335" />
-      <rect x="8" y="14" width="16" height="1.5" fill="#4285F4" />
-      <rect x="11" y="17" width="4" height="4" rx="0.8" fill="#0F9D58" />
-    </svg>
-  ),
-  N8N: () => (
-    <svg viewBox="0 0 32 32" width="24" height="24">
-      <rect width="32" height="32" rx="7" fill="#FF6D00" />
-      <circle cx="9" cy="16" r="3.5" fill="white" />
-      <circle cx="23" cy="16" r="3.5" fill="white" />
-      <line x1="12.5" y1="16" x2="19.5" y2="16" stroke="white" strokeWidth="2" />
-      <circle cx="16" cy="9" r="3" fill="white" />
-      <line x1="16" y1="12" x2="16" y2="15" stroke="white" strokeWidth="1.5" />
-    </svg>
-  ),
-  CRM: () => (
-    <svg viewBox="0 0 32 32" width="24" height="24">
-      <rect width="32" height="32" rx="7" fill="#7C6FF5" />
-      <circle cx="16" cy="12" r="4.5" fill="white" opacity="0.95" />
-      <path d="M7 25c0-5 4-8 9-8s9 3 9 8" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" />
-    </svg>
-  ),
-  Postgres: () => (
-    <svg viewBox="0 0 32 32" width="24" height="24">
-      <rect width="32" height="32" rx="7" fill="#336791" />
-      <ellipse cx="16" cy="11" rx="6.5" ry="3" fill="white" opacity="0.9" />
-      <rect x="9.5" y="11" width="13" height="10" fill="#336791" />
-      <ellipse cx="16" cy="21" rx="6.5" ry="3" fill="white" opacity="0.7" />
-      <ellipse cx="16" cy="16" rx="6.5" ry="2.5" fill="white" opacity="0.45" />
-    </svg>
-  ),
-  Webhook: () => (
-    <svg viewBox="0 0 32 32" width="24" height="24">
-      <rect width="32" height="32" rx="7" fill="#0EA5E9" />
-      <path d="M9 16 C9 9.5 23 9.5 23 16 C23 22.5 9 22.5 9 16" stroke="white" strokeWidth="2" fill="none" />
-      <circle cx="9" cy="16" r="2.5" fill="white" />
-      <circle cx="23" cy="16" r="2.5" fill="white" />
-    </svg>
-  ),
-  Sheets: () => (
-    <svg viewBox="0 0 32 32" width="24" height="24">
-      <rect width="32" height="32" rx="7" fill="#0F9D58" />
-      <rect x="8" y="9" width="16" height="14" rx="1.5" fill="white" opacity="0.15" />
-      <rect x="8" y="9" width="16" height="4" rx="1.5" fill="white" opacity="0.85" />
-      <line x1="16" y1="9" x2="16" y2="23" stroke="white" strokeWidth="1" opacity="0.55" />
-      <line x1="8" y1="16" x2="24" y2="16" stroke="white" strokeWidth="1" opacity="0.55" />
-      <line x1="8" y1="20" x2="24" y2="20" stroke="white" strokeWidth="1" opacity="0.55" />
-    </svg>
-  ),
-  Email: () => (
-    <svg viewBox="0 0 32 32" width="24" height="24">
-      <rect width="32" height="32" rx="7" fill="#64748B" />
-      <rect x="6" y="10" width="20" height="13" rx="2" fill="none" stroke="white" strokeWidth="1.8" />
-      <path d="M6 12l10 7 10-7" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-    </svg>
-  ),
-  Evolution: () => (
-    <svg viewBox="0 0 32 32" width="24" height="24">
-      <rect width="32" height="32" rx="7" fill="#1a1a2e" />
-      <circle cx="16" cy="16" r="6.5" fill="none" stroke="white" strokeWidth="1.8" />
-      <circle cx="16" cy="16" r="3" fill="white" />
-      <line x1="16" y1="7" x2="16" y2="9.5" stroke="white" strokeWidth="2" strokeLinecap="round" />
-      <line x1="16" y1="22.5" x2="16" y2="25" stroke="white" strokeWidth="2" strokeLinecap="round" />
-      <line x1="7" y1="16" x2="9.5" y2="16" stroke="white" strokeWidth="2" strokeLinecap="round" />
-      <line x1="22.5" y1="16" x2="25" y2="16" stroke="white" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  ),
-  Dashboard: () => (
-    <svg viewBox="0 0 32 32" width="24" height="24">
-      <rect width="32" height="32" rx="7" fill="#4F46E5" />
-      <rect x="8" y="18" width="4.5" height="6" rx="1" fill="white" opacity="0.65" />
-      <rect x="14" y="14" width="4.5" height="10" rx="1" fill="white" opacity="0.82" />
-      <rect x="20" y="9" width="4.5" height="15" rx="1" fill="white" />
-      <path d="M9 16 L14 12 L19 14 L24 8" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  ),
-}
+// ── Integrações com logos reais via CDN ──────────────────────────────────────
 
-const INNER_ITEMS = [
-  { name: "WhatsApp",  Icon: Icons.WhatsApp, color: "#25D366" },
-  { name: "CRM",       Icon: Icons.CRM,      color: "#7C6FF5" },
-  { name: "n8n",       Icon: Icons.N8N,      color: "#FF6D00" },
-  { name: "Agenda",    Icon: Icons.Calendar, color: "#4285F4" },
-  { name: "Evolution", Icon: Icons.Evolution,color: "#a78bfa" },
+const INTEGRATIONS = [
+  { name: "WhatsApp", logo: "https://cdn.jsdelivr.net/gh/nickhale/branding@main/whatsapp-icon.svg", color: "#25D366", fallbackBg: "#25D366", fallbackText: "W" },
+  { name: "Instagram", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png", color: "#E4405F", fallbackBg: "#E4405F", fallbackText: "IG" },
+  { name: "Slack", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg", color: "#4A154B", fallbackBg: "#4A154B", fallbackText: "S" },
+  { name: "HubSpot", logo: "https://www.vectorlogo.zone/logos/hubspot/hubspot-icon.svg", color: "#FF7A59", fallbackBg: "#FF7A59", fallbackText: "H" },
+  { name: "Salesforce", logo: "https://www.vectorlogo.zone/logos/salesforce/salesforce-icon.svg", color: "#00A1E0", fallbackBg: "#00A1E0", fallbackText: "SF" },
+  { name: "Google Calendar", logo: "https://www.vectorlogo.zone/logos/google_calendar/google_calendar-icon.svg", color: "#4285F4", fallbackBg: "#4285F4", fallbackText: "GC" },
+  { name: "Zapier", logo: "https://www.vectorlogo.zone/logos/zapier/zapier-icon.svg", color: "#FF4A00", fallbackBg: "#FF4A00", fallbackText: "Z" },
+  { name: "Stripe", logo: "https://www.vectorlogo.zone/logos/stripe/stripe-icon.svg", color: "#635BFF", fallbackBg: "#635BFF", fallbackText: "St" },
+  { name: "n8n", logo: "https://www.vectorlogo.zone/logos/n8nio/n8nio-icon.svg", color: "#FF6D00", fallbackBg: "#FF6D00", fallbackText: "n8" },
+  { name: "PostgreSQL", logo: "https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg", color: "#336791", fallbackBg: "#336791", fallbackText: "PG" },
+  { name: "Telegram", logo: "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg", color: "#26A5E4", fallbackBg: "#26A5E4", fallbackText: "T" },
+  { name: "Sheets", logo: "https://www.vectorlogo.zone/logos/google_sheets/google_sheets-icon.svg", color: "#0F9D58", fallbackBg: "#0F9D58", fallbackText: "GS" },
 ]
 
-const OUTER_ITEMS = [
-  { name: "PostgreSQL", Icon: Icons.Postgres, color: "#336791" },
-  { name: "Webhooks",   Icon: Icons.Webhook,  color: "#0EA5E9" },
-  { name: "Planilhas",  Icon: Icons.Sheets,   color: "#0F9D58" },
-  { name: "E-mail",     Icon: Icons.Email,    color: "#64748B" },
-  { name: "Dashboard",  Icon: Icons.Dashboard,color: "#4F46E5" },
-]
+const RING_1 = INTEGRATIONS.slice(0, 6)
+const RING_2 = INTEGRATIONS.slice(6, 12)
 
-const INNER_R = 130
-const OUTER_R = 230
+// ── Logo Card com Fallback ──────────────────────────────────────────────────────
 
-function useOrbit(items: typeof INNER_ITEMS, radius: number, speed: number) {
-  const refs = useRef<(HTMLDivElement | null)[]>([])
-  const frame = useRef(0)
-
-  useEffect(() => {
-    const startTime = performance.now()
-    const tick = (now: number) => {
-      const elapsed = (now - startTime) / 1000
-      items.forEach((_, i) => {
-        const el = refs.current[i]
-        if (!el) return
-        const baseAngle = (i / items.length) * Math.PI * 2
-        const angle = baseAngle + elapsed * speed
-        const x = Math.cos(angle) * radius
-        const y = Math.sin(angle) * radius
-        el.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
-      })
-      frame.current = requestAnimationFrame(tick)
-    }
-    frame.current = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(frame.current)
-  }, [items, radius, speed])
-
-  return refs
+function LogoCard({ item, size = 56 }: { item: typeof INTEGRATIONS[0], size?: number }) {
+  const [imgError, setImgError] = useState(false)
+  return (
+    <div
+      className="relative group"
+      style={{ width: size, height: size }}
+    >
+      {/* Glow */}
+      <div
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
+        style={{ boxShadow: `0 0 30px ${item.color}40`, transform: "scale(1.3)" }}
+      />
+      {/* Card */}
+      <div
+        className="w-full h-full rounded-2xl flex items-center justify-center overflow-hidden backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-110"
+        style={{ background: "rgba(255,255,255,0.06)", boxShadow: `0 4px 20px ${item.color}20, inset 0 1px 0 rgba(255,255,255,0.08)` }}
+      >
+        {!imgError ? (
+          <img
+            src={item.logo}
+            alt={item.name}
+            className="w-[60%] h-[60%] object-contain"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div
+            className="w-[70%] h-[70%] rounded-xl flex items-center justify-center font-bold text-white text-xs"
+            style={{ background: item.fallbackBg }}
+          >
+            {item.fallbackText}
+          </div>
+        )}
+      </div>
+    </div>
+  )
 }
 
-function OrbitLayer({
+// ── Orbit Ring ──────────────────────────────────────────────────────────────────
+
+function OrbitRing({
   items,
   radius,
   speed,
   visible,
+  cardSize = 56,
 }: {
-  items: typeof INNER_ITEMS
+  items: typeof INTEGRATIONS
   radius: number
   speed: number
   visible: boolean
+  cardSize?: number
 }) {
-  const refs = useOrbit(items, radius, speed)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const angleRef = useRef(0)
+  const frameRef = useRef(0)
+
+  useEffect(() => {
+    if (!visible) return
+    const tick = () => {
+      angleRef.current += speed
+      const container = containerRef.current
+      if (container) {
+        const children = container.children
+        for (let i = 0; i < children.length; i++) {
+          const baseAngle = (i / items.length) * Math.PI * 2
+          const angle = baseAngle + (angleRef.current * Math.PI) / 180
+          const x = Math.cos(angle) * radius
+          const y = Math.sin(angle) * radius * 0.45 // flatten orbit for perspective
+          const scale = 0.75 + 0.25 * ((Math.sin(angle) + 1) / 2) // depth illusion
+          const z = Math.sin(angle) // for z-ordering
+          const el = children[i] as HTMLElement
+          el.style.transform = `translate(${x}px, ${y}px) scale(${scale})`
+          el.style.zIndex = `${Math.round(z * 10) + 10}`
+          el.style.opacity = `${0.5 + 0.5 * scale}`
+        }
+      }
+      frameRef.current = requestAnimationFrame(tick)
+    }
+    frameRef.current = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frameRef.current)
+  }, [visible, items.length, radius, speed])
 
   return (
-    <>
-      {items.map((item, i) => (
-        <motion.div
-          key={item.name}
-          ref={(el) => { refs.current[i] = el }}
-          initial={{ opacity: 0, scale: 0.4 }}
-          animate={visible ? { opacity: 1, scale: 1 } : {}}
-          transition={{ delay: 0.4 + i * 0.08, type: "spring", stiffness: 120, damping: 16 }}
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-            transform: `translate(calc(-50% + ${Math.cos((i / items.length) * Math.PI * 2) * radius}px), calc(-50% + ${Math.sin((i / items.length) * Math.PI * 2) * radius}px))`,
-          }}
-        >
-          {/* Glow */}
-          <div
+    <div ref={containerRef} className="absolute inset-0" style={{ left: "50%", top: "50%" }}>
+      {items.map((item, i) => {
+        const baseAngle = (i / items.length) * Math.PI * 2
+        const x = Math.cos(baseAngle) * radius
+        const y = Math.sin(baseAngle) * radius * 0.45
+        return (
+          <motion.div
+            key={item.name}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={visible ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.3 + i * 0.08, type: "spring", stiffness: 150, damping: 16 }}
+            className="absolute flex flex-col items-center gap-1.5"
             style={{
-              position: "absolute",
-              inset: -10,
-              borderRadius: "50%",
-              background: `radial-gradient(circle, ${item.color}25 0%, transparent 70%)`,
-              pointerEvents: "none",
-            }}
-          />
-          {/* Icon card */}
-          <div
-            style={{
-              width: 52,
-              height: 52,
-              borderRadius: 14,
-              background: "rgba(255,255,255,0.06)",
-              border: `1px solid ${item.color}35`,
-              boxShadow: `0 4px 20px ${item.color}30, inset 0 1px 0 rgba(255,255,255,0.08)`,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backdropFilter: "blur(8px)",
+              marginLeft: -cardSize / 2,
+              marginTop: -cardSize / 2,
+              transform: `translate(${x}px, ${y}px)`,
             }}
           >
-            <item.Icon />
-          </div>
-          {/* Name label */}
-          <div
-            style={{
-              marginTop: 6,
-              fontSize: 10,
-              fontWeight: 600,
-              color: "rgba(255,255,255,0.45)",
-              textAlign: "center",
-              whiteSpace: "nowrap",
-              letterSpacing: "0.02em",
-            }}
-          >
-            {item.name}
-          </div>
-        </motion.div>
-      ))}
-    </>
+            <LogoCard item={item} size={cardSize} />
+            <span className="text-[10px] font-semibold text-white/40 whitespace-nowrap">{item.name}</span>
+          </motion.div>
+        )
+      })}
+    </div>
   )
 }
 
-// Animated SVG lines + pulses
-function ConnectionLines({ visible }: { visible: boolean }) {
-  const W = 700
-  const H = 420
-  const cx = W / 2
-  const cy = H / 2
+// ── Pulse Lines (SVG) ───────────────────────────────────────────────────────────
 
-  const allItems = [...INNER_ITEMS, ...OUTER_ITEMS]
-  const allRadii = [...Array(5).fill(INNER_R), ...Array(5).fill(OUTER_R)]
-
+function PulseLines({ visible }: { visible: boolean }) {
   return (
-    <svg
-      style={{ position: "absolute", top: 0, left: 0, pointerEvents: "none", width: "100%", height: "100%" }}
-      viewBox={`0 0 ${W} ${H}`}
-    >
+    <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 800 500">
       <defs>
-        {allItems.map((item, i) => (
-          <linearGradient key={i} id={`grad-${i}`} x1="0%" y1="0%" x2="100%" y2="0%" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor={item.color} stopOpacity="0.5" />
-            <stop offset="100%" stopColor={item.color} stopOpacity="0.05" />
-          </linearGradient>
-        ))}
+        <radialGradient id="center-glow">
+          <stop offset="0%" stopColor="#7C6FF5" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#7C6FF5" stopOpacity="0" />
+        </radialGradient>
       </defs>
 
-      {/* Static dashed orbit rings */}
-      <circle cx={cx} cy={cy} r={INNER_R} fill="none" stroke="rgba(124,111,245,0.12)" strokeWidth="1" strokeDasharray="4 6" />
-      <circle cx={cx} cy={cy} r={OUTER_R} fill="none" stroke="rgba(124,111,245,0.08)" strokeWidth="1" strokeDasharray="4 8" />
+      {/* Elliptical orbit paths */}
+      <motion.ellipse
+        cx="400" cy="250"
+        rx="180" ry="80"
+        fill="none"
+        stroke="rgba(124,111,245,0.15)"
+        strokeWidth="1"
+        strokeDasharray="6 8"
+        initial={{ opacity: 0 }}
+        animate={visible ? { opacity: 1 } : {}}
+        transition={{ delay: 0.2, duration: 1 }}
+      />
+      <motion.ellipse
+        cx="400" cy="250"
+        rx="300" ry="130"
+        fill="none"
+        stroke="rgba(124,111,245,0.08)"
+        strokeWidth="1"
+        strokeDasharray="6 12"
+        initial={{ opacity: 0 }}
+        animate={visible ? { opacity: 1 } : {}}
+        transition={{ delay: 0.3, duration: 1 }}
+      />
 
-      {/* Lines from center to each item (static, approximate positions) */}
-      {allItems.map((item, i) => {
-        const angle = (i < 5)
-          ? (i / 5) * Math.PI * 2
-          : ((i - 5) / 5) * Math.PI * 2
-        const r = allRadii[i]
-        const x2 = cx + Math.cos(angle) * r
-        const y2 = cy + Math.sin(angle) * r
-        return (
-          <motion.line
-            key={i}
-            x1={cx} y1={cy} x2={x2} y2={y2}
-            stroke={item.color}
-            strokeWidth="0.8"
-            strokeOpacity="0.3"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={visible ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ delay: 0.6 + i * 0.05, duration: 0.4 }}
+      {/* Traveling pulse dots along inner orbit */}
+      {visible && [0, 1, 2].map((i) => (
+        <motion.circle
+          key={`pulse-${i}`}
+          r="3"
+          fill="#7C6FF5"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ duration: 3, delay: i * 1, repeat: Infinity }}
+        >
+          <animateMotion
+            dur="6s"
+            begin={`${i * 2}s`}
+            repeatCount="indefinite"
+            path="M 580,250 A 180,80 0 1,1 220,250 A 180,80 0 1,1 580,250"
           />
-        )
-      })}
+        </motion.circle>
+      ))}
+
+      {/* Traveling pulse dots along outer orbit */}
+      {visible && [0, 1].map((i) => (
+        <motion.circle
+          key={`pulse-outer-${i}`}
+          r="2.5"
+          fill="#4ADE80"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 0.8, 0] }}
+          transition={{ duration: 4, delay: i * 2, repeat: Infinity }}
+        >
+          <animateMotion
+            dur="8s"
+            begin={`${i * 4}s`}
+            repeatCount="indefinite"
+            path="M 700,250 A 300,130 0 1,1 100,250 A 300,130 0 1,1 700,250"
+          />
+        </motion.circle>
+      ))}
+
+      {/* Center glow */}
+      <circle cx="400" cy="250" r="100" fill="url(#center-glow)" />
     </svg>
   )
 }
+
+// ── Stats Tickers ───────────────────────────────────────────────────────────────
+
+function StatTicker({ label, value, suffix, delay }: { label: string, value: number, suffix: string, delay: number }) {
+  const [count, setCount] = useState(0)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ob = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          let start = 0
+          const step = () => {
+            start += Math.ceil(value / 40)
+            if (start >= value) { setCount(value); return }
+            setCount(start)
+            requestAnimationFrame(step)
+          }
+          setTimeout(step, delay * 1000)
+          ob.disconnect()
+        }
+      },
+      { threshold: 0.3 }
+    )
+    if (ref.current) ob.observe(ref.current)
+    return () => ob.disconnect()
+  }, [value, delay])
+
+  return (
+    <div ref={ref} className="text-center">
+      <div className="text-[28px] md:text-[36px] font-bold text-white tracking-tight">
+        {count.toLocaleString("pt-BR")}{suffix}
+      </div>
+      <div className="text-[12px] text-white/40 font-medium mt-1">{label}</div>
+    </div>
+  )
+}
+
+// ── Componente Principal ────────────────────────────────────────────────────────
 
 export default function IntegrationsSection() {
   const [visible, setVisible] = useState(false)
@@ -276,7 +261,7 @@ export default function IntegrationsSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect() } },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     )
     if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
@@ -285,136 +270,126 @@ export default function IntegrationsSection() {
   return (
     <section
       id="integracoes"
-      className="bg-[#F2F2F2] py-20 md:py-32 overflow-hidden"
+      className="relative py-24 md:py-32 overflow-hidden"
+      style={{ background: "#020204" }}
       aria-label="Integrações"
     >
-      <div className="mx-auto w-full max-w-[1440px] px-2 md:px-4 lg:px-6">
-        <div
-          className="relative z-10 border border-[#1A1A1A]/[0.12] rounded-2xl overflow-hidden"
-          style={{ clipPath: "inset(0 round 16px)", background: "#0A0A14" }}
-        >
-          {/* Header */}
-          <div className="flex min-h-[72px] items-center justify-between gap-4 border-b border-white/[0.06] px-5 md:px-8">
-            <Reveal>
-              <h2 className="text-[24px] font-medium leading-tight text-white/90 md:text-[28px]">
-                Integrações
-              </h2>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <p className="hidden text-[13px] text-white/30 md:block">
-                Conecte sua IA às ferramentas do negócio
-              </p>
-            </Reveal>
-          </div>
+      {/* Global Ambient */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-b from-[#7C6FF5]/10 via-transparent to-transparent blur-[100px] rounded-full pointer-events-none" />
 
-          {/* Orbit animation */}
-          <div
-            ref={sectionRef}
-            className="relative w-full overflow-hidden"
-            style={{ height: "420px" }}
+      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-6">
+
+        {/* Header */}
+        <div className="text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-sm"
           >
-            {/* Ambient gradient */}
-            <div
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                width: 500,
-                height: 500,
-                marginLeft: -250,
-                marginTop: -250,
-                borderRadius: "50%",
-                background: "radial-gradient(circle, rgba(124,111,245,0.08) 0%, transparent 65%)",
-                pointerEvents: "none",
-              }}
-            />
+            <span className="w-2 h-2 rounded-full bg-[#4ADE80] animate-pulse" />
+            <span className="text-[12px] font-medium text-white/70">12 integrações nativas disponíveis</span>
+          </motion.div>
 
-            {/* SVG orbit rings + lines */}
-            <ConnectionLines visible={visible} />
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-[36px] md:text-[56px] font-bold text-white tracking-tight leading-tight mb-6"
+          >
+            Conecte tudo. <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C6FF5] via-[#A9A0FF] to-[#4ADE80]">
+              Em um só lugar.
+            </span>
+          </motion.h2>
 
-            {/* Orbit layers */}
-            <OrbitLayer items={INNER_ITEMS} radius={INNER_R} speed={0.35} visible={visible} />
-            <OrbitLayer items={OUTER_ITEMS} radius={OUTER_R} speed={-0.2} visible={visible} />
-
-            {/* Central hub */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.3 }}
-              animate={visible ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.1, type: "spring", stiffness: 130, damping: 18 }}
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: 8,
-                zIndex: 20,
-              }}
-            >
-              {/* Outer glow ring */}
-              <div
-                style={{
-                  position: "absolute",
-                  width: 140,
-                  height: 140,
-                  borderRadius: "50%",
-                  background: "radial-gradient(circle, rgba(124,111,245,0.18) 0%, transparent 65%)",
-                  top: -30,
-                  left: -30,
-                }}
-              />
-              {/* Pulse ring */}
-              <motion.div
-                animate={{ scale: [1, 1.18, 1], opacity: [0.5, 0, 0.5] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                style={{
-                  position: "absolute",
-                  width: 90,
-                  height: 90,
-                  borderRadius: "50%",
-                  border: "1px solid rgba(124,111,245,0.4)",
-                  top: -5,
-                  left: -5,
-                }}
-              />
-              {/* Icon */}
-              <div
-                style={{
-                  width: 80,
-                  height: 80,
-                  borderRadius: 22,
-                  background: "linear-gradient(135deg, #9b8ff7 0%, #7C6FF5 60%, #5b4fd4 100%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  boxShadow: "0 0 40px rgba(124,111,245,0.45), 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.18)",
-                  position: "relative",
-                }}
-              >
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="white">
-                  <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <div style={{ textAlign: "center", marginTop: 2 }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: "rgba(255,255,255,0.9)", letterSpacing: "-0.02em" }}>SuperAI</div>
-                <div style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", marginTop: 1, letterSpacing: "0.06em", textTransform: "uppercase" }}>Hub Central</div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Footer bar */}
-          <div className="border-t border-white/[0.05] px-6 py-3.5 md:px-8 flex items-center justify-between gap-4">
-            <p className="text-[11px] text-white/20 uppercase tracking-wider font-medium">
-              10 integrações nativas · dados em tempo real
-            </p>
-            <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4ADE80] animate-pulse" />
-              <span className="text-[10px] text-white/25 font-medium uppercase tracking-wider">ao vivo</span>
-            </div>
-          </div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-[16px] md:text-[18px] text-white/50 max-w-2xl mx-auto leading-relaxed"
+          >
+            Sua IA se integra nativamente com WhatsApp, Instagram, CRMs, Calendários e mais — sem código, sem complicação.
+          </motion.p>
         </div>
+
+        {/* Orbit Animation Area */}
+        <div
+          ref={sectionRef}
+          className="relative w-full mx-auto"
+          style={{ height: "500px", maxWidth: "800px" }}
+        >
+          {/* SVG Orbits & Pulses */}
+          <PulseLines visible={visible} />
+
+          {/* Inner Ring */}
+          <OrbitRing items={RING_1} radius={180} speed={0.15} visible={visible} cardSize={54} />
+
+          {/* Outer Ring */}
+          <OrbitRing items={RING_2} radius={300} speed={-0.08} visible={visible} cardSize={48} />
+
+          {/* Central Hub */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.3 }}
+            animate={visible ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.1, type: "spring", stiffness: 130, damping: 18 }}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-3"
+          >
+            {/* Pulsing ring */}
+            <motion.div
+              animate={visible ? { scale: [1, 1.3, 1], opacity: [0.6, 0, 0.6] } : {}}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute w-[120px] h-[120px] rounded-full border-2 border-[#7C6FF5]/40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            />
+            <motion.div
+              animate={visible ? { scale: [1, 1.5, 1], opacity: [0.4, 0, 0.4] } : {}}
+              transition={{ duration: 3, delay: 0.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute w-[140px] h-[140px] rounded-full border border-[#4ADE80]/20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            />
+            
+            {/* Logo */}
+            <div className="w-[90px] h-[90px] rounded-[26px] bg-gradient-to-br from-[#9b8ff7] via-[#7C6FF5] to-[#5b4fd4] flex items-center justify-center shadow-[0_0_60px_rgba(124,111,245,0.5),0_10px_40px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.2)] relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="white" className="relative z-10">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div className="text-center">
+              <div className="text-[16px] font-bold text-white tracking-tight">SuperAI</div>
+              <div className="text-[10px] text-white/30 uppercase tracking-[0.15em] font-medium mt-0.5">Hub Central</div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Stats Row */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto"
+        >
+          <StatTicker label="Integrações Nativas" value={12} suffix="+" delay={0} />
+          <StatTicker label="Mensagens Sincronizadas" value={100} suffix="%" delay={0.2} />
+          <StatTicker label="Tempo de Setup" value={5} suffix=" min" delay={0.4} />
+          <StatTicker label="Uptime Garantido" value={99} suffix=".9%" delay={0.6} />
+        </motion.div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <a
+            href="#contato"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-bold text-[14px] hover:bg-white/10 transition-all hover:-translate-y-0.5 backdrop-blur-sm"
+          >
+            Ver todas as integrações
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+          </a>
+        </motion.div>
       </div>
     </section>
   )
