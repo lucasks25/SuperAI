@@ -6,7 +6,7 @@ import Reveal from "./Reveal"
 const IntegrationsPlayer = dynamic(() => import("./IntegrationsPlayer"), {
   ssr: false,
   loading: () => (
-    <div className="w-full aspect-[1200/700] bg-[#F0EFEb] animate-pulse" />
+    <div className="w-full aspect-[1400/700] bg-[#0A0A14] animate-pulse" />
   ),
 })
 

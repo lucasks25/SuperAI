@@ -16,9 +16,9 @@ export function RemotionRoot() {
       <Composition
         id="IntegrationsOrbit"
         component={IntegrationsOrbit}
-        durationInFrames={300}
+        durationInFrames={360}
         fps={30}
-        width={1200}
+        width={1400}
         height={700}
       />
     </>
