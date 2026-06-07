@@ -1,186 +1,189 @@
 "use client"
 
+import { useRef } from "react"
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
-import { WHATSAPP_URL } from "@/lib/constants"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 // Clone de: "Real success stories from customers"
-// Heading centralizado · cards horizontais com logo + screenshot mockup + resultado
+// Cards com foto no topo + logo sobreposto + nome + resultado
+// Scroll lateral com setas
 
 const STORIES = [
   {
-    segment: "Clínica Odonto+",
+    company: "Clínica Odonto+",
     type: "Clínica Odontológica",
+    result: "A Clínica Odonto+ acelerou agendamentos em 3× e reduziu faltas em 60% com a SuperAI",
     color: "#7C6FF5",
-    result: "A Clínica Odonto+ reduziu faltas em 60% e aumentou agendamentos em 3× com a SuperAI",
-    metric: "↑ 3× agendamentos",
+    gradientFrom: "#2d2654",
+    gradientTo: "#1a1536",
     initials: "CO",
-    mockup: (
-      <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.08)" }}>
-        <div className="px-3 py-2 flex items-center gap-2 bg-[#075E54]">
-          <div className="w-5 h-5 rounded-full bg-[#7C6FF5] flex items-center justify-center">
-            <svg width="8" height="8" viewBox="0 0 24 24" fill="white"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          </div>
-          <p className="text-[8px] font-semibold text-white">SuperAI · Clínica Odonto+</p>
-        </div>
-        <div className="px-2.5 py-2.5 flex flex-col gap-1.5" style={{ background: "#ECE5DD" }}>
-          <div className="flex justify-start"><div className="px-2 py-1 text-[8px] text-[#111]" style={{ background: "#fff", borderRadius: "6px 6px 6px 2px" }}>Quero marcar uma consulta</div></div>
-          <div className="flex justify-end"><div className="px-2 py-1 text-[8px] text-[#111]" style={{ background: "#DCF8C6", borderRadius: "6px 6px 2px 6px" }}>Temos horários amanhã às 10h ou 15h. Qual prefere?</div></div>
-          <div className="flex justify-start"><div className="px-2 py-1 text-[8px] text-[#111]" style={{ background: "#fff", borderRadius: "6px 6px 6px 2px" }}>10h por favor!</div></div>
-          <div className="flex justify-end"><div className="px-2 py-1 text-[8px] text-[#111]" style={{ background: "#DCF8C6", borderRadius: "6px 6px 2px 6px" }}>Perfeito! Consulta confirmada para amanhã às 10h ✅</div></div>
-        </div>
-      </div>
-    ),
+    photoLabel: "Dra. Ana Ferreira",
   },
   {
-    segment: "Viva Imóveis",
+    company: "Viva Imóveis",
     type: "Imobiliária",
+    result: "A Viva Imóveis triplicou a taxa de conversão de leads qualificados em 45 dias",
     color: "#E46F2F",
-    result: "A Viva Imóveis triplicou a taxa de conversão de leads qualificados em 45 dias de uso",
-    metric: "3× leads qualificados",
+    gradientFrom: "#3d2210",
+    gradientTo: "#251609",
     initials: "VI",
-    mockup: (
-      <div className="rounded-xl p-3 flex flex-col gap-2" style={{ background: "#111", border: "1px solid rgba(255,255,255,0.07)" }}>
-        {[
-          { name: "Carlos M.", tag: "Alta intenção", color: "#E46F2F", score: 92 },
-          { name: "Ana P.",    tag: "Média intenção", color: "#FACC15", score: 65 },
-          { name: "Bruno S.", tag: "Qualificando",   color: "#7C6FF5", score: 40 },
-        ].map((lead) => (
-          <div key={lead.name} className="flex items-center gap-2 px-2.5 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-            <div className="w-5 h-5 rounded-full flex items-center justify-center text-[7px] font-bold text-white shrink-0" style={{ background: lead.color }}>{lead.name[0]}</div>
-            <p className="text-[9px] text-white/60 flex-1">{lead.name}</p>
-            <span className="text-[7px] font-semibold px-1.5 py-0.5 rounded" style={{ background: `${lead.color}18`, color: lead.color }}>{lead.tag}</span>
-            <span className="text-[8px] font-bold" style={{ color: lead.color }}>{lead.score}</span>
-          </div>
-        ))}
-      </div>
-    ),
+    photoLabel: "Carlos Mendes",
   },
   {
-    segment: "Agência Pulse",
+    company: "Agência Pulse",
     type: "Agência Digital",
+    result: "A Agência Pulse eliminou 70% dos chamados manuais e entrega relatórios instantâneos",
     color: "#2F9E75",
-    result: "A Agência Pulse eliminou 70% dos chamados manuais de clientes com relatórios automáticos",
-    metric: "↓ 70% chamados manuais",
+    gradientFrom: "#0e3526",
+    gradientTo: "#081e15",
     initials: "AP",
-    mockup: (
-      <div className="rounded-xl p-3" style={{ background: "#111", border: "1px solid rgba(255,255,255,0.07)" }}>
-        <p className="text-[8px] font-semibold text-white/30 mb-2 uppercase tracking-wider">Relatório · Outubro</p>
-        {[
-          { label: "Impressões",   value: "2.3M", up: true },
-          { label: "CTR",          value: "4.2%", up: true },
-          { label: "Leads",        value: "312",  up: true },
-          { label: "Custo/Lead",   value: "R$ 8", up: false },
-        ].map((row) => (
-          <div key={row.label} className="flex items-center justify-between py-1.5" style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-            <p className="text-[9px] text-white/40">{row.label}</p>
-            <div className="flex items-center gap-1.5">
-              <p className="text-[9px] font-semibold text-white">{row.value}</p>
-              <span className="text-[7px] font-bold" style={{ color: row.up ? "#4ADE80" : "#F87171" }}>{row.up ? "▲" : "▼"}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-    ),
+    photoLabel: "Beatriz Lima",
   },
   {
-    segment: "Restaurante Cais",
+    company: "Restaurante Cais",
     type: "Restaurante",
+    result: "O Restaurante Cais aumentou em 40% o retorno de clientes com fidelização automática",
     color: "#FACC15",
-    result: "O Restaurante Cais aumentou em 40% o retorno de clientes com o programa de fidelidade automatizado",
-    metric: "+40% retorno de clientes",
+    gradientFrom: "#3a2f00",
+    gradientTo: "#1e1800",
     initials: "RC",
-    mockup: (
-      <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.08)" }}>
-        <div className="px-3 py-2 flex items-center gap-2 bg-[#075E54]">
-          <div className="w-5 h-5 rounded-full bg-[#FACC15] flex items-center justify-center">
-            <svg width="8" height="8" viewBox="0 0 24 24" fill="#111"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          </div>
-          <p className="text-[8px] font-semibold text-white">SuperAI · Restaurante Cais</p>
-        </div>
-        <div className="px-2.5 py-2.5 flex flex-col gap-1.5" style={{ background: "#ECE5DD" }}>
-          <div className="flex justify-start"><div className="px-2 py-1 text-[8px] text-[#111]" style={{ background: "#fff", borderRadius: "6px 6px 6px 2px" }}>Mesa pra 4 amanhã às 20h?</div></div>
-          <div className="flex justify-end"><div className="px-2 py-1 text-[8px] text-[#111]" style={{ background: "#DCF8C6", borderRadius: "6px 6px 2px 6px" }}>Temos mesa na varanda! Reserva confirmada ✅</div></div>
-          <div className="flex justify-end"><div className="px-2 py-1 text-[8px] text-[#111]" style={{ background: "#DCF8C6", borderRadius: "6px 6px 2px 6px" }}>Enviamos o cardápio e cupom 10% 🎁</div></div>
-        </div>
-      </div>
-    ),
+    photoLabel: "Chef Roberto",
+  },
+  {
+    company: "OficinaPro",
+    type: "Oficina Mecânica",
+    result: "A OficinaPro passou a atender 3× mais clientes sem contratar nenhum funcionário a mais",
+    color: "#60A5FA",
+    gradientFrom: "#0d1f3c",
+    gradientTo: "#070f1e",
+    initials: "OP",
+    photoLabel: "Marcos Silva",
   },
 ]
 
 export default function TestimonialsSection() {
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const scroll = (dir: "left" | "right") => {
+    if (!scrollRef.current) return
+    const amount = 280
+    scrollRef.current.scrollBy({ left: dir === "right" ? amount : -amount, behavior: "smooth" })
+  }
+
   return (
     <section className="py-24 md:py-28 overflow-hidden" style={{ background: "#000000" }} aria-label="Casos de sucesso">
-      <div className="mx-auto w-full max-w-[1440px] px-6 md:px-8">
+      <div className="mx-auto w-full max-w-[1440px]">
 
-        {/* Header — clone exato da print */}
-        <div className="text-center mb-12">
+        {/* Header + setas — mesmo layout da print */}
+        <div className="flex items-center justify-between px-6 md:px-12 mb-10">
           <motion.h2
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[32px] md:text-[44px] font-bold text-white leading-tight tracking-tight"
+            className="text-[28px] md:text-[38px] font-bold text-white leading-tight tracking-tight"
           >
             Histórias de sucesso dos nossos clientes
           </motion.h2>
+
+          {/* Setas de navegação — igual à print */}
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              onClick={() => scroll("left")}
+              className="w-9 h-9 rounded-full flex items-center justify-center transition-colors hover:bg-white/10"
+              style={{ border: "1px solid rgba(255,255,255,0.12)" }}
+              aria-label="Anterior"
+            >
+              <ChevronLeft size={16} className="text-white/60" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="w-9 h-9 rounded-full flex items-center justify-center transition-colors hover:bg-white/10"
+              style={{ border: "1px solid rgba(255,255,255,0.12)" }}
+              aria-label="Próximo"
+            >
+              <ChevronRight size={16} className="text-white/60" />
+            </button>
+          </div>
         </div>
 
-        {/* Cards horizontais — clone da print */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {/* Scroll horizontal — clone da print */}
+        <div
+          ref={scrollRef}
+          className="flex gap-3 overflow-x-auto pb-4 px-6 md:px-12"
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+        >
           {STORIES.map((s, i) => (
             <motion.div
-              key={s.segment}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              key={s.company}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="flex flex-col gap-4 rounded-2xl p-5"
+              transition={{ delay: i * 0.06 }}
+              className="flex-none w-[240px] rounded-2xl overflow-hidden flex flex-col"
               style={{
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.08)",
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.09)",
               }}
             >
-              {/* Logo / company header */}
-              <div className="flex items-center gap-3">
+              {/* Área da foto — placeholder colorido com logo sobreposto */}
+              <div
+                className="relative w-full h-[160px] flex items-center justify-center"
+                style={{
+                  background: `linear-gradient(145deg, ${s.gradientFrom} 0%, ${s.gradientTo} 100%)`,
+                }}
+              >
+                {/* Placeholder central — será substituído por foto */}
+                <div className="flex flex-col items-center gap-2 opacity-30">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.2" strokeLinecap="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                  <p className="text-[9px] text-white font-medium">{s.photoLabel}</p>
+                </div>
+
+                {/* Logo badge sobreposto — canto superior esquerdo, igual à print */}
                 <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center text-[13px] font-black text-white shrink-0"
-                  style={{ background: s.color }}
+                  className="absolute top-3 left-3 w-10 h-10 rounded-xl flex items-center justify-center text-[11px] font-black text-white shadow-lg"
+                  style={{
+                    background: s.color,
+                    boxShadow: `0 4px 12px ${s.color}50`,
+                  }}
                 >
                   {s.initials}
                 </div>
-                <div>
-                  <p className="text-[13px] font-semibold text-white">{s.segment}</p>
-                  <p className="text-[11px]" style={{ color: "rgba(255,255,255,0.35)" }}>{s.type}</p>
-                </div>
+
+                {/* Overlay gradient no fundo da foto */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-10"
+                  style={{ background: "linear-gradient(to top, rgba(0,0,0,0.4), transparent)" }}
+                />
               </div>
 
-              {/* Mini UI mockup */}
-              {s.mockup}
+              {/* Conteúdo abaixo da foto */}
+              <div className="flex flex-col gap-2.5 p-4 flex-1">
+                <div>
+                  <p className="text-[13px] font-semibold text-white leading-snug">{s.company}</p>
+                  <p className="text-[11px] mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>{s.type}</p>
+                </div>
 
-              {/* Result */}
-              <p className="text-[12px] leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-                {s.result}
-              </p>
-
-              {/* Metric */}
-              <p className="text-[12px] font-bold" style={{ color: s.color }}>{s.metric}</p>
+                <p className="text-[12px] leading-relaxed flex-1" style={{ color: "rgba(255,255,255,0.55)" }}>
+                  {s.result}
+                </p>
+              </div>
             </motion.div>
           ))}
-        </div>
 
-        {/* CTA */}
-        <div className="text-center mt-12">
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-[14px] font-semibold text-white transition-opacity hover:opacity-80"
-            style={{ background: "#7C6FF5" }}
-          >
-            Quero ser o próximo caso de sucesso <ArrowRight size={15} />
-          </a>
+          {/* Card fantasma — indica que há mais */}
+          <div className="flex-none w-[60px]" />
         </div>
       </div>
+
+      <style>{`
+        div::-webkit-scrollbar { display: none; }
+      `}</style>
     </section>
   )
 }

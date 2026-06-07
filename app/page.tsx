@@ -4,7 +4,6 @@ import LogoCloud from "@/components/LogoCloud"
 import SuperhumanSuite from "@/components/SuperhumanSuite"
 import MetricsSection from "@/components/MetricsSection"
 import BeforeAfterSection from "@/components/BeforeAfterSection"
-import SDRSection from "@/components/SDRSection"
 import UseCasesSection from "@/components/UseCasesSection"
 import TestimonialsSection from "@/components/TestimonialsSection"
 import HowItWorksSection from "@/components/HowItWorksSection"
@@ -24,9 +23,8 @@ export default function Home() {
       <MetricsSection />
       <BeforeAfterSection />
       <div id="solucoes">
-        <SDRSection />
+        <UseCasesSection />
       </div>
-      <UseCasesSection />
       <TestimonialsSection />
       <HowItWorksSection />
       <IntegrationsSection />
