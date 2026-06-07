@@ -172,8 +172,6 @@ export default function SuperhumanSuite() {
     }
   }
 
-  const activeFeature = SUITE_FEATURES.find((f) => f.id === activeId) || SUITE_FEATURES[0]
-
   return (
     <section id="produto" className="bg-[#F2F2F2] py-20 md:py-32">
       <div className="mx-auto w-full max-w-[1440px] px-2 md:px-4 lg:px-6">
@@ -234,24 +232,23 @@ export default function SuperhumanSuite() {
             </div>
           </div>
 
-          {/* Suite Container with 2 columns on Desktop */}
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_1.1fr] relative">
-            
-            {/* Left Column: Text Articles */}
-            <div className="flex flex-col">
-              {SUITE_FEATURES.map((feature, index) => {
-                const Icon = feature.icon
-                return (
-                  <div key={feature.id} className="relative">
-                    {index > 0 && (
-                      <div className="h-4 border-b border-[#1A1A1A]/[0.08] bg-[#EBEBEB]" />
-                    )}
-                    <article
-                      id={feature.id}
-                      className={"scroll-mt-60 bg-[#F8F7F2] flex flex-col justify-between px-5 py-12 md:px-6 md:py-24 lg:px-8 " +
-                        (index !== SUITE_FEATURES.length - 1 ? "border-b border-[#1A1A1A]/[0.12]" : "")
-                      }
-                    >
+          {/* Suite Container with sequential horizontal grids */}
+          <div className="flex flex-col">
+            {SUITE_FEATURES.map((feature, index) => {
+              const Icon = feature.icon
+              return (
+                <div key={feature.id} className="relative">
+                  {index > 0 && (
+                    <div className="h-4 border-b border-[#1A1A1A]/[0.08] bg-[#EBEBEB]" />
+                  )}
+                  <article
+                    id={feature.id}
+                    className={"scroll-mt-60 bg-[#F8F7F2] grid grid-cols-1 md:grid-cols-[1fr_1.1fr] " +
+                      (index !== SUITE_FEATURES.length - 1 ? "border-b border-[#1A1A1A]/[0.12]" : "")
+                    }
+                  >
+                    {/* Left Column: Text & Benefits */}
+                    <div className="flex flex-col justify-between px-5 py-9 md:px-8 md:py-16 lg:px-12">
                       <div>
                         <Reveal delay={0.04}>
                           <div className="mb-6 flex items-center justify-between gap-3 flex-wrap">
@@ -266,7 +263,7 @@ export default function SuperhumanSuite() {
                         </Reveal>
 
                         <Reveal delay={0.08}>
-                          <h3 className="max-w-[540px] text-[28px] font-medium leading-[1.1] text-[#171717] md:text-[36px]">
+                          <h3 className="max-w-[540px] text-[26px] font-medium leading-[1.1] text-[#171717] md:text-[34px]">
                             {feature.title}
                           </h3>
                         </Reveal>
@@ -300,45 +297,20 @@ export default function SuperhumanSuite() {
                           </Reveal>
                         ))}
                       </ul>
+                    </div>
 
-                      {/* Mobile Inline Visual */}
-                      <div className="block md:hidden mt-8 w-full">
-                        <SuiteVisual
-                          variant={feature.visual}
-                          accent={feature.accent}
-                          index={index}
-                        />
-                      </div>
-                    </article>
-                  </div>
-                )
-              })}
-            </div>
-
-            {/* Right Column: Sticky Mockup Window (Desktop Only) */}
-            <div className="hidden md:block relative border-l border-[#1A1A1A]/[0.12]">
-              <div className="sticky top-[240px] p-6 lg:p-10 h-[520px] lg:h-[580px] w-full flex items-center justify-center">
-                <div className="w-full h-full relative overflow-hidden rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-[#1A1A1A]/[0.15]">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeFeature.id}
-                      initial={{ opacity: 0, scale: 0.96, y: 10 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.96, y: -10 }}
-                      transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
-                      className="absolute inset-0 w-full h-full"
-                    >
+                    {/* Right Column: Visual Mockup */}
+                    <div className="w-full h-full min-h-[360px] md:min-h-full border-t md:border-t-0 md:border-l border-[#1A1A1A]/[0.12]">
                       <SuiteVisual
-                        variant={activeFeature.visual}
-                        accent={activeFeature.accent}
-                        index={SUITE_FEATURES.indexOf(activeFeature)}
+                        variant={feature.visual}
+                        accent={feature.accent}
+                        index={index}
                       />
-                    </motion.div>
-                  </AnimatePresence>
+                    </div>
+                  </article>
                 </div>
-              </div>
-            </div>
-
+              )
+            })}
           </div>
         </div>
       </div>
