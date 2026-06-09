@@ -32,73 +32,55 @@ interface Feature {
 
 const SUITE_FEATURES: Feature[] = [
   {
-    id: "email",
-    tab: "E-mail",
-    eyebrow: "E-mail Automático",
-    stat: "↓ 80% tempo de resposta",
-    icon: Mail,
-    title: "Triagem e respostas por e-mail, no automático",
-    description:
-      "A IA lê a caixa de entrada, responde mensagens rotineiras e encaminha casos complexos para o setor responsável — sem ninguém precisar abrir o cliente.",
-    bullets: [
-      "Interpreta contexto e urgência de cada mensagem",
-      "Gera rascunhos ou envia respostas automáticas",
-      "Encaminha orçamentos para a equipe comercial",
-      "Reduz o tempo de resposta em até 80%",
-    ],
-    accent: "#EAB308",
-    visual: "email",
-  },
-  {
-    id: "atendimento",
-    tab: "Atendimento",
-    eyebrow: "Atendimento",
-    stat: "3× mais conversas simultâneas",
-    icon: MessageCircle,
-    title: "O agente mais produtivo para atender clientes",
-    description:
-      "Responda leads e clientes com contexto, velocidade e uma voz que parece da sua equipe — no WhatsApp, e-mail ou qualquer canal.",
-    bullets: [
-      "Responde rápido o que importa",
-      "Mantém contexto de cada conversa",
-      "Escreve com IA no tom da sua marca",
-      "Economiza horas da sua equipe toda semana",
-    ],
-    accent: "#7C6FF5",
-    visual: "inbox",
-  },
-  {
     id: "sdr",
-    tab: "SDR",
+    tab: "SDR de IA",
     eyebrow: "SDR com IA",
     stat: "2× mais leads qualificados",
     icon: Target,
     title: "SDR de IA que qualifica oportunidades reais",
     description:
-      "Transforme conversas soltas em reuniões prontas para venda, com critério e timing — sem depender de SDR humano para cada lead.",
+      "Transforme conversas frias em reuniões prontas para venda. A IA entende o perfil do lead, identifica a urgência e qualifica antes de repassar para o time comercial.",
     bullets: [
-      "Qualifica leads automaticamente",
+      "Qualifica leads automaticamente 24/7",
       "Identifica urgência, perfil e intenção",
-      "Faz follow-up sem deixar pontas soltas",
-      "Entrega oportunidades prontas ao comercial",
+      "Faz follow-up inteligente sem ser inconveniente",
+      "Entrega oportunidades prontas no seu CRM",
     ],
     accent: "#2F9E75",
     visual: "writer",
   },
   {
+    id: "atendimento",
+    tab: "Atendimento",
+    eyebrow: "Atendimento Omnichannel",
+    stat: "3× mais conversas",
+    icon: MessageCircle,
+    title: "O agente perfeito para escalar o atendimento",
+    description:
+      "Responda clientes com velocidade, contexto e empatia — no WhatsApp, Instagram ou site. Reduza o tempo de espera a zero e nunca perca um lead por lentidão.",
+    bullets: [
+      "Respostas instantâneas e baseadas na sua empresa",
+      "Mantém contexto de conversas longas",
+      "Transfere para o humano sem atrito",
+      "Clonagem do tom de voz da sua marca",
+    ],
+    accent: "#7C6FF5",
+    visual: "inbox",
+  },
+  {
     id: "agenda",
     tab: "Agenda",
-    eyebrow: "Agendamento automático",
-    stat: "↓ 90% no-shows com lembretes",
+    eyebrow: "Agendamento Inteligente",
+    stat: "↓ 90% de No-shows",
     icon: Calendar,
     title: "Agendamentos no piloto automático",
     description:
-      "Conecte calendário, regras e disponibilidade para marcar reuniões sem fricção — o agente confirma, remarca e lembra o cliente.",
+      "Conecte o calendário da equipe de vendas. A IA negocia horários, confirma compromissos e envia lembretes para garantir a presença do lead.",
     bullets: [
-      "Conecta Google Calendar e calendários da equipe",
-      "Encontra horários livres em tempo real",
-      "Confirma, remarca e lembra o cliente",
-      "Reduz tarefas manuais do time",
+      "Conecta nativamente ao Google Calendar",
+      "Cruza horários livres em tempo real",
+      "Confirma, remarca e envia lembretes no WhatsApp",
+      "Elimina idas e vindas para marcar uma call",
     ],
     accent: "#E46F2F",
     visual: "workspace",
@@ -106,20 +88,38 @@ const SUITE_FEATURES: Feature[] = [
   {
     id: "automacoes",
     tab: "Automações",
-    eyebrow: "Automações",
-    stat: "24/7 sem intervenção humana",
+    eyebrow: "Fluxos de Automação",
+    stat: "Zero trabalho manual",
     icon: Workflow,
-    title: "IA que funciona dentro da sua operação",
+    title: "Sincronização invisível com suas ferramentas",
     description:
-      "Integre CRM, planilhas, WhatsApp e processos internos para sua agência escalar — sem depender de operações manuais repetitivas.",
+      "A IA atualiza o CRM, dispara e-mails, cria faturas e notifica o time no Slack automaticamente conforme a conversa avança.",
     bullets: [
-      "Conecta suas ferramentas favoritas",
-      "Atualiza dados sem trabalho manual",
-      "Executa fluxos de ponta a ponta",
-      "Funciona em qualquer canal do negócio",
+      "Conecta com HubSpot, Salesforce, RD Station e mais",
+      "Atualiza dados sem o vendedor precisar digitar nada",
+      "Executa gatilhos webhooks de ponta a ponta",
+      "Opera 100% no background",
     ],
     accent: "#00A7B5",
     visual: "assistant",
+  },
+  {
+    id: "email",
+    tab: "E-mail",
+    eyebrow: "Triagem de E-mail",
+    stat: "↓ 80% tempo de resposta",
+    icon: Mail,
+    title: "Triagem e respostas por e-mail no automático",
+    description:
+      "A IA lê sua caixa de entrada comercial, responde dúvidas frequentes e encaminha orçamentos para o setor responsável — sem ninguém precisar ler.",
+    bullets: [
+      "Interpreta contexto e urgência de e-mails",
+      "Gera rascunhos ou envia respostas diretas",
+      "Extrai dados de anexos (PDFs) automaticamente",
+      "Limpa o volume operacional da caixa de entrada",
+    ],
+    accent: "#EAB308",
+    visual: "email",
   },
 ]
 
@@ -137,7 +137,7 @@ const VISUAL_BACKGROUNDS: Record<VisualVariant, string> = {
 }
 
 export default function SuperhumanSuite() {
-  const [activeId, setActiveId] = useState("email")
+  const [activeId, setActiveId] = useState("sdr")
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -173,18 +173,17 @@ export default function SuperhumanSuite() {
   }
 
   return (
-    <section id="produto" className="bg-[#F2F2F2] py-20 md:py-32">
-      <div className="mx-auto w-full max-w-[1440px] px-2 md:px-4 lg:px-6">
+    <section id="produto" className="bg-[#020204] py-20 md:py-32 relative">
+      <div className="mx-auto w-full max-w-[1200px] px-6">
         <div
-          className="relative z-10 border border-[#1A1A1A]/[0.12] bg-[#F8F7F2] rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.04)]"
-          style={{ clipPath: "inset(0 round 16px)" }}
+          className="relative z-10 border border-white/10 bg-white/[0.02] backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden"
         >
           {/* Sticky Header Group */}
-          <div className="sticky top-[80px] z-30 bg-[#F8F7F2]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col">
-            <div className="flex min-h-[78px] items-center justify-between gap-4 border-b border-[#1A1A1A]/[0.12] px-5 md:px-8">
+          <div className="sticky top-[80px] z-30 bg-[#0A0A0C]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.4)] flex flex-col border-b border-white/10">
+            <div className="flex min-h-[78px] items-center justify-between gap-4 border-b border-white/5 px-6 md:px-10">
               <Reveal>
-                <h2 className="text-[24px] font-medium leading-tight text-[#22211F] md:text-[31px]">
-                  Sua suite de IA
+                <h2 className="text-[20px] font-bold leading-tight text-white md:text-[26px]">
+                  Plataforma Completa
                 </h2>
               </Reveal>
 
@@ -193,14 +192,14 @@ export default function SuperhumanSuite() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hidden h-9 items-center justify-center border border-[#7C57E8]/40 px-4 text-[10px] font-semibold uppercase text-[#7C57E8] transition-colors hover:bg-[#7C57E8] hover:text-white sm:inline-flex"
+                  className="hidden h-9 items-center justify-center border border-[#7C6FF5]/40 px-5 rounded-full text-[12px] font-bold uppercase text-[#7C6FF5] transition-colors hover:bg-[#7C6FF5] hover:text-white sm:inline-flex shadow-[0_0_15px_rgba(124,111,245,0.1)]"
                 >
-                  Conhecer suite
+                  Conhecer plataforma
                 </a>
               </Reveal>
             </div>
 
-            <div className="grid grid-cols-2 border-b border-[#1A1A1A]/[0.15] md:grid-cols-5">
+            <div className="grid grid-cols-2 md:grid-cols-5">
               {SUITE_FEATURES.map((feature, index) => {
                 const Icon = feature.icon
                 const isActive = activeId === feature.id
@@ -208,22 +207,23 @@ export default function SuperhumanSuite() {
                   <button
                     key={feature.id}
                     onClick={() => handleTabClick(feature.id)}
-                    className={"relative flex h-12 items-center justify-center gap-2.5 border-[#1A1A1A]/[0.15] text-[13px] font-medium text-[#22211F] transition-colors hover:bg-[#F0EFEB]/50 " +
+                    className={"relative flex h-14 items-center justify-center gap-2.5 border-white/5 text-[13px] font-bold transition-colors hover:bg-white/[0.03] " +
                       (index !== SUITE_FEATURES.length - 1 ? "md:border-r " : " ") +
                       (index % 2 === 0 && index !== 4 ? "border-r md:border-r-0 " : " ") +
                       (index < 4 ? "border-b md:border-b-0 " : " ") +
-                      (index === 4 ? "col-span-2 md:col-span-1" : "")
+                      (index === 4 ? "col-span-2 md:col-span-1" : "") +
+                      (isActive ? " text-white" : " text-white/50")
                     }
                   >
                     {isActive && (
                       <motion.div
                         layoutId="activeSuiteTab"
-                        className="absolute inset-0 bg-white shadow-sm z-0"
+                        className="absolute inset-0 bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] z-0"
                         transition={{ type: "spring", stiffness: 350, damping: 30 }}
                       />
                     )}
                     <span className="relative z-10 flex items-center gap-2">
-                      <Icon size={14} color={feature.accent} strokeWidth={2.4} />
+                      <Icon size={16} color={feature.accent} strokeWidth={2.4} />
                       {feature.tab}
                     </span>
                   </button>
@@ -239,37 +239,37 @@ export default function SuperhumanSuite() {
               return (
                 <div key={feature.id} className="relative">
                   {index > 0 && (
-                    <div className="h-4 border-b border-[#1A1A1A]/[0.08] bg-[#EBEBEB]" />
+                    <div className="h-[1px] border-b border-white/5 bg-transparent mx-6 md:mx-10" />
                   )}
                   <article
                     id={feature.id}
-                    className={"scroll-mt-60 bg-[#F8F7F2] grid grid-cols-1 md:grid-cols-[1fr_1.1fr] " +
-                      (index !== SUITE_FEATURES.length - 1 ? "border-b border-[#1A1A1A]/[0.12]" : "")
+                    className={"scroll-mt-60 bg-transparent grid grid-cols-1 md:grid-cols-[1fr_1.1fr] " +
+                      (index !== SUITE_FEATURES.length - 1 ? "border-b border-white/5" : "")
                     }
                   >
                     {/* Left Column: Text & Benefits */}
-                    <div className="flex flex-col justify-between px-5 py-9 md:px-8 md:py-16 lg:px-12">
+                    <div className="flex flex-col justify-between px-6 py-10 md:px-10 md:py-16 lg:px-14">
                       <div>
                         <Reveal delay={0.04}>
                           <div className="mb-6 flex items-center justify-between gap-3 flex-wrap">
-                            <div className="flex items-center gap-2.5 text-[12px] font-medium text-[#22211F]/[0.65]">
-                              <Icon size={14} color={feature.accent} strokeWidth={2.5} />
+                            <div className="flex items-center gap-2.5 text-[12px] font-bold text-white/70">
+                              <Icon size={16} color={feature.accent} strokeWidth={2.5} />
                               <span>{feature.eyebrow}</span>
                             </div>
-                            <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded" style={{ background: feature.accent + "18", color: feature.accent }}>
+                            <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded border" style={{ background: feature.accent + "10", color: feature.accent, borderColor: feature.accent + "30" }}>
                               {feature.stat}
                             </span>
                           </div>
                         </Reveal>
 
                         <Reveal delay={0.08}>
-                          <h3 className="max-w-[540px] text-[26px] font-medium leading-[1.1] text-[#171717] md:text-[34px]">
+                          <h3 className="max-w-[540px] text-[28px] font-bold leading-[1.15] text-white md:text-[36px] tracking-tight">
                             {feature.title}
                           </h3>
                         </Reveal>
 
                         <Reveal delay={0.12}>
-                          <p className="mt-4 max-w-[540px] text-[14px] leading-relaxed text-[#1A1A1A]/70 md:text-[15px]">
+                          <p className="mt-4 max-w-[540px] text-[15px] leading-relaxed text-white/60 md:text-[16px]">
                             {feature.description}
                           </p>
                         </Reveal>
@@ -279,19 +279,19 @@ export default function SuperhumanSuite() {
                             href={WHATSAPP_URL}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mt-6 inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-[#6E4BD8] transition-opacity hover:opacity-70"
+                            className="mt-8 inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-wider text-[#7C6FF5] transition-opacity hover:opacity-70 group"
                           >
-                            Falar com especialista
-                            <ArrowRight size={13} />
+                            Como implementar isso?
+                            <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                           </a>
                         </Reveal>
                       </div>
 
-                      <ul className="mt-10 space-y-3.5">
+                      <ul className="mt-12 space-y-4">
                         {feature.bullets.map((bullet, bulletIndex) => (
                           <Reveal key={bullet} delay={0.18 + bulletIndex * 0.04}>
-                            <li className="flex items-start gap-3.5 text-[13px] font-medium leading-snug text-[#1A1A1A]/90 md:text-[14px]">
-                              <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#171717]" />
+                            <li className="flex items-start gap-3.5 text-[14px] font-medium leading-snug text-white/80">
+                              <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: feature.accent }} />
                               <span>{bullet}</span>
                             </li>
                           </Reveal>
@@ -300,7 +300,7 @@ export default function SuperhumanSuite() {
                     </div>
 
                     {/* Right Column: Visual Mockup */}
-                    <div className="w-full h-full min-h-[360px] md:min-h-full border-t md:border-t-0 md:border-l border-[#1A1A1A]/[0.12]">
+                    <div className="w-full h-full min-h-[360px] md:min-h-full border-t md:border-t-0 md:border-l border-white/5">
                       <SuiteVisual
                         variant={feature.visual}
                         accent={feature.accent}
@@ -438,18 +438,18 @@ function InboxMockup() {
       <div className="flex-1 flex flex-col bg-[#05050A]">
         <div className="p-3 border-b border-white/5 flex justify-between items-center bg-[#0D0D14]">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-green-400 to-blue-500 p-[1.5px]">
+            <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#266BB9]/50 to-[#266BB9] p-[1.5px]">
               <div className="w-full h-full bg-[#111] rounded-full border border-[#111] overflow-hidden flex items-center justify-center text-[8px] font-bold text-white">MS</div>
             </div>
             <div>
               <p className="text-[10px] font-bold text-white">Marcos Silva</p>
               <div className="flex items-center gap-1">
-                <span className="w-1 h-1 bg-green-500 rounded-full animate-pulse"></span>
+                <span className="w-1 h-1 bg-[#266BB9] rounded-full animate-pulse"></span>
                 <p className="text-[8px] text-white/40">Online</p>
               </div>
             </div>
           </div>
-          <div className="px-2 py-0.5 bg-green-500/10 text-green-400 text-[8px] font-bold rounded border border-green-500/20 flex items-center gap-1">
+          <div className="px-2 py-0.5 bg-[#266BB9]/10 text-[#266BB9] text-[8px] font-bold rounded border border-[#266BB9]/20 flex items-center gap-1">
             🔥 Lead Quente
           </div>
         </div>
@@ -531,9 +531,9 @@ function EmailMockup() {
           <div className="mt-2 flex items-center justify-between pt-1.5 border-t border-white/5">
             <span className="text-[8px] text-white/40">Status da IA</span>
             <span className={"text-[8px] px-1.5 py-0.5 rounded font-bold uppercase transition-all duration-300 " +
-              (step === 0 ? "bg-amber-500/10 text-amber-400 border border-amber-500/20" :
-               step === 1 ? "bg-purple-500/10 text-purple-400 border border-purple-500/20 animate-pulse" :
-               "bg-green-500/10 text-green-400 border border-green-500/20")
+              (step === 0 ? "bg-white/20/10 text-white/80 border border-white/20/20" :
+               step === 1 ? "bg-[#266BB9]/10 text-white/80 border border-white/20/20 animate-pulse" :
+               "bg-[#266BB9]/10 text-[#266BB9] border border-[#266BB9]/20")
             }>
               {step === 0 ? "Pendente" : step === 1 ? "Lendo e Interpretando..." : "Respondido por IA"}
             </span>
@@ -556,7 +556,7 @@ function EmailMockup() {
                 </div>
                 <div className="space-y-1.5 text-[8px] text-white/75 font-mono bg-black/40 p-2 rounded border border-white/5 leading-normal">
                   <p><span className="text-white/40">Para:</span> carlos@techmed.com.br</p>
-                  <p>Olá Carlos, recebemos seu e-mail. Nossa solução de IA atende perfeitamente clínicas como a TechMed. Aqui está o link para agendarmos uma demonstração: superai.com.br/agenda</p>
+                  <p>Olá Carlos, recebemos seu e-mail. Nossa solução de IA atende perfeitamente clínicas como a TechMed. Aqui está o link para agendarmos uma demonstração: moltochat.com.br/agenda</p>
                 </div>
               </motion.div>
             )}
@@ -603,13 +603,13 @@ function WriterMockup() {
     <div className="w-full h-full bg-[#0D0D14]/95 rounded-xl border border-black/10 overflow-hidden flex flex-col p-4 shadow-2xl text-left bg-gradient-to-b from-[#0D0D14] to-[#05050A]">
       <div className="flex items-center justify-between border-b border-white/5 pb-3 mb-3">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-full bg-[#2F9E75]/20 flex items-center justify-center text-[#2F9E75] font-bold text-xs">S</div>
+          <div className="w-7 h-7 rounded-full bg-[#266BB9]/20 flex items-center justify-center text-[#2F9E75] font-bold text-xs">S</div>
           <div>
             <h4 className="text-[11px] font-bold text-white">SDR de IA Qualificador</h4>
             <p className="text-[8px] text-white/40">Análise cognitiva do lead</p>
           </div>
         </div>
-        <div className="bg-[#2F9E75]/10 border border-[#2F9E75]/20 text-[#2F9E75] text-[8px] font-bold px-2 py-0.5 rounded">
+        <div className="bg-[#266BB9]/10 border border-[#266BB9]/20 text-[#2F9E75] text-[8px] font-bold px-2 py-0.5 rounded">
           Ativo 24/7
         </div>
       </div>
@@ -632,7 +632,7 @@ function WriterMockup() {
             <div className="flex justify-between items-center mb-2">
               <span className="text-[9px] font-bold text-white">Perfil do Lead</span>
               <span className={"text-[9px] font-extrabold px-1.5 py-0.5 rounded transition-all duration-300 " +
-                (score >= 80 ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-[0_0_10px_rgba(74,222,128,0.15)]" : "bg-white/5 text-white/50")
+                (score >= 80 ? "bg-[#266BB9]/10 text-[#266BB9] border border-[#266BB9]/20 shadow-[0_0_10px_rgba(74,222,128,0.15)]" : "bg-white/5 text-white/50")
               }>
                 Score: {score}
               </span>
@@ -649,7 +649,7 @@ function WriterMockup() {
               </div>
               <div className="flex justify-between items-center py-1 border-b border-white/5">
                 <span className="text-white/40 font-medium">Dor</span>
-                <span className={"font-semibold text-red-400 transition-opacity " + (step >= 2 ? "opacity-100" : "opacity-20")}>Absenteísmo (No-shows)</span>
+                <span className={"font-semibold text-white/80 transition-opacity " + (step >= 2 ? "opacity-100" : "opacity-20")}>Absenteísmo (No-shows)</span>
               </div>
               <div className="flex justify-between items-center py-1 border-b border-white/5">
                 <span className="text-white/40 font-medium">Verba</span>
@@ -665,7 +665,7 @@ function WriterMockup() {
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.9, opacity: 0 }}
-                  className="bg-[#2F9E75]/10 border border-[#2F9E75]/30 p-1.5 rounded text-center text-[7.5px] text-emerald-400 font-bold flex items-center justify-center gap-1"
+                  className="bg-[#266BB9]/10 border border-[#266BB9]/30 p-1.5 rounded text-center text-[7.5px] text-[#266BB9] font-bold flex items-center justify-center gap-1"
                 >
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>
                   Lead Qualificado p/ Vendas
@@ -776,10 +776,10 @@ function WorkspaceMockup() {
                   initial={{ opacity: 0, scale: 0.9, y: 5 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9, y: 5 }}
-                  className="bg-green-500/10 border border-green-500/20 text-green-400 p-2 rounded-lg leading-normal"
+                  className="bg-[#266BB9]/10 border border-[#266BB9]/20 text-[#266BB9] p-2 rounded-lg leading-normal"
                 >
                   <div className="flex items-center gap-1.5 mb-1">
-                    <div className="w-3.5 h-3.5 rounded-full bg-green-500/20 flex items-center justify-center"><span className="text-[8px] font-bold">✓</span></div>
+                    <div className="w-3.5 h-3.5 rounded-full bg-[#266BB9]/20 flex items-center justify-center"><span className="text-[8px] font-bold">✓</span></div>
                     <span className="text-[8px] font-bold uppercase tracking-wider">Marcado!</span>
                   </div>
                   <p className="text-[7px] text-white/70">
@@ -811,7 +811,7 @@ function AssistantMockup() {
       <div className="flex items-center justify-between border-b border-white/5 pb-2 mb-3">
         <h4 className="text-[11px] font-bold text-white">Editor de Fluxos de IA</h4>
         <div className="flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-ping"></span>
+          <span className="w-1.5 h-1.5 bg-[#266BB9] rounded-full animate-ping"></span>
           <span className="text-[8px] text-white/40">Visualizador de Ações</span>
         </div>
       </div>
@@ -875,9 +875,9 @@ function AssistantMockup() {
           </div>
 
           <div className={"z-10 w-[110px] rounded-lg border p-1.5 flex items-center gap-1.5 transition-all duration-300 bg-[#11111A]/90 backdrop-blur " +
-            (activeNode === 4 ? "border-[#2F9E75] shadow-[0_0_10px_rgba(47,158,117,0.2)] bg-[#2F9E75]/5" : "border-white/10")
+            (activeNode === 4 ? "border-[#266BB9] shadow-[0_0_10px_rgba(47,158,117,0.2)] bg-[#266BB9]/5" : "border-white/10")
           }>
-            <div className="w-4 h-4 rounded bg-[#2F9E75]/20 flex items-center justify-center text-[#2F9E75]">
+            <div className="w-4 h-4 rounded bg-[#266BB9]/20 flex items-center justify-center text-[#2F9E75]">
               <Target size={8} />
             </div>
             <div className="text-left">

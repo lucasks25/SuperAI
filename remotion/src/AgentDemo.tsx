@@ -100,18 +100,38 @@ function PhoneFrame({ children }: { children: React.ReactNode }) {
     <div
       style={{
         width: 360,
+        height: 720,
         background: "#fff",
-        borderRadius: 24,
+        borderRadius: 40,
+        border: "8px solid #23232A",
         overflow: "hidden",
         boxShadow: "0 32px 80px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.08)",
-        border: "1px solid rgba(0,0,0,0.06)",
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
+      {/* iPhone Dynamic Island Mockup */}
+      <div 
+        style={{
+          position: "absolute",
+          top: 0,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: 120,
+          height: 30,
+          background: "#000",
+          borderBottomLeftRadius: 16,
+          borderBottomRightRadius: 16,
+          zIndex: 50,
+        }}
+      />
+
       {/* WA header */}
       <div
         style={{
           background: "#075E54",
-          padding: "12px 16px",
+          padding: "28px 16px 12px 16px",
           display: "flex",
           alignItems: "center",
           gap: 12,
@@ -121,7 +141,7 @@ function PhoneFrame({ children }: { children: React.ReactNode }) {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20 2H4C3 2 2 3 2 4v18l4-4h14c1 0 2-1 2-2V4c0-1-1-2-2-2z" /></svg>
         </div>
         <div>
-          <div style={{ color: "#fff", fontSize: 14, fontWeight: 600 }}>Assistente SuperAI</div>
+          <div style={{ color: "#fff", fontSize: 14, fontWeight: 600 }}>Assistente MoltoChat</div>
           <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 11, display: "flex", alignItems: "center", gap: 4 }}>
             <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ADE80" }} />
             online
@@ -134,10 +154,27 @@ function PhoneFrame({ children }: { children: React.ReactNode }) {
         style={{
           background: "#ECE5DD",
           padding: "16px 12px",
-          minHeight: 400,
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          gap: 8,
+          backgroundImage: "url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')",
+          backgroundSize: "cover",
+          backgroundBlendMode: "overlay",
+          backgroundColor: "rgba(236, 229, 221, 0.95)"
         }}
       >
         {children}
+      </div>
+      
+      {/* Input area mockup */}
+      <div style={{ padding: "12px", background: "#f0f0f0", display: "flex", alignItems: "center", gap: 8 }}>
+        <div style={{ flex: 1, background: "#fff", borderRadius: 20, padding: "8px 16px", fontSize: 13, color: "#999" }}>
+          Mensagem
+        </div>
+        <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#00A884", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </div>
       </div>
     </div>
   )
@@ -217,7 +254,7 @@ export function AgentDemo() {
           >
             <svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
           </div>
-          <div style={{ fontSize: 36, fontWeight: 600, color: DARK, letterSpacing: -1 }}>SuperAI</div>
+          <div style={{ fontSize: 36, fontWeight: 600, color: DARK, letterSpacing: -1 }}>MoltoChat</div>
           <div style={{ fontSize: 16, color: "#94A3B8", marginTop: 8 }}>Agente SDR em ação</div>
         </AbsoluteFill>
       )}

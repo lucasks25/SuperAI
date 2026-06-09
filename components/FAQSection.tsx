@@ -7,82 +7,83 @@ import Reveal from "./Reveal"
 import { FAQ_ITEMS } from "@/lib/constants"
 
 export default function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(0) // Open the first one by default
 
   return (
     <section
       id="faq"
-      className="bg-[#F2F2F2] py-20 md:py-32"
+      className="bg-white py-20 md:py-32 relative border-t border-b border-black/10"
       aria-label="Perguntas frequentes"
     >
-      <div className="mx-auto w-full max-w-[1440px] px-2 md:px-4 lg:px-6">
-        <div
-          className="relative z-10 border border-[#1A1A1A]/[0.12] bg-[#F8F7F2] rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.04)]"
-          style={{ clipPath: "inset(0 round 16px)" }}
-        >
-          {/* Header */}
-          <div className="flex min-h-[78px] items-center border-b border-[#1A1A1A]/[0.12] px-5 md:px-8">
-            <Reveal>
-              <h2 className="text-[24px] font-medium leading-tight text-[#22211F] md:text-[31px]">
-                Perguntas frequentes
-              </h2>
-            </Reveal>
-          </div>
+      <div className="mx-auto w-full max-w-[1300px] px-6 md:px-12 flex flex-col lg:flex-row gap-16 lg:gap-24">
+        
+        {/* Left Column: Title & Subtitle */}
+        <div className="lg:w-1/3 flex flex-col lg:sticky lg:top-32 h-fit">
+          <Reveal>
+            <h2 className="text-[30px] md:text-[48px] lg:text-[64px] font-black leading-[1.05] text-black tracking-tighter mb-6">
+              Perguntas<br />Frequentes
+            </h2>
+            <p className="text-[18px] text-gray-600 font-medium leading-relaxed mb-8">
+              Ficou com alguma dúvida sobre como a MoltoChat pode escalar a sua operação? Confira as respostas abaixo.
+            </p>
+            <div className="hidden lg:block w-16 h-1 bg-[#D4FF00] mb-8" />
+            <a href="mailto:contato@moltochat.com" className="inline-flex items-center text-[15px] font-bold uppercase tracking-wider text-black hover:text-[#0055FF] transition-colors gap-2 group">
+              Fale com um especialista
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="group-hover:translate-x-1 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </Reveal>
+        </div>
 
-          {/* Items */}
-          <div role="list">
+        {/* Right Column: Accordions */}
+        <div className="lg:w-2/3 flex flex-col">
+          <div className="border-t-2 border-black">
             {FAQ_ITEMS.map((item, i) => {
               const isOpen = openIndex === i
               return (
-                <Reveal key={item.q} delay={0.04 * i}>
-                  <div
-                    className={`border-b border-[#1A1A1A]/[0.08] last:border-0 ${
-                      isOpen ? "bg-white/60" : ""
-                    } transition-colors`}
+                <div key={i} className="border-b-2 border-black">
+                  <button
+                    className="w-full flex items-center justify-between py-6 md:py-8 text-left focus-visible:outline-none group"
+                    onClick={() => setOpenIndex(isOpen ? null : i)}
+                    aria-expanded={isOpen}
                   >
-                    <button
-                      className="w-full grid grid-cols-[1fr_auto] items-center gap-6 px-5 py-7 md:px-8 text-left focus-visible:outline-none group"
-                      onClick={() => setOpenIndex(isOpen ? null : i)}
-                      aria-expanded={isOpen}
+                    <span
+                      className={`text-[20px] md:text-[24px] font-black tracking-tight transition-colors pr-8 ${
+                        isOpen ? "text-[#0055FF]" : "text-black group-hover:text-[#0055FF]"
+                      }`}
                     >
-                      <span
-                        className={`text-[16px] md:text-[18px] font-medium tracking-tight transition-colors ${
-                          isOpen
-                            ? "text-[#7C6FF5]"
-                            : "text-[#22211F] group-hover:text-[#7C6FF5]"
-                        }`}
-                      >
-                        {item.q}
-                      </span>
-                      <motion.div
-                        animate={{ rotate: isOpen ? 45 : 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="shrink-0 w-7 h-7 flex items-center justify-center border border-[#1A1A1A]/[0.12] bg-white"
-                      >
-                        <Plus size={14} className="text-[#1A1A1A]/50" />
-                      </motion.div>
-                    </button>
+                      {item.q}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: isOpen ? 45 : 0 }}
+                      transition={{ duration: 0.2, ease: "easeInOut" }}
+                      className={`shrink-0 w-10 h-10 flex items-center justify-center rounded-full transition-colors ${
+                        isOpen ? "bg-[#0055FF] text-white" : "bg-gray-100 text-black group-hover:bg-[#0055FF] group-hover:text-white"
+                      }`}
+                    >
+                      <Plus size={20} strokeWidth={3} />
+                    </motion.div>
+                  </button>
 
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.28 }}
-                        >
-                          <p className="px-5 pb-7 md:px-8 text-[15px] text-[#1A1A1A]/55 leading-relaxed max-w-3xl">
-                            {item.a}
-                          </p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </Reveal>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                      >
+                        <p className="pb-8 text-[16px] md:text-[18px] text-gray-700 font-medium leading-relaxed max-w-[90%]">
+                          {item.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               )
             })}
           </div>
         </div>
+        
       </div>
     </section>
   )

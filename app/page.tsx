@@ -1,14 +1,12 @@
 import Navbar from "@/components/Navbar"
 import Hero from "@/components/Hero"
-import LogoCloud from "@/components/LogoCloud"
-import SuperhumanSuite from "@/components/SuperhumanSuite"
-import MetricsSection from "@/components/MetricsSection"
-import BeforeAfterSection from "@/components/BeforeAfterSection"
+import ComparisonSection from "@/components/ComparisonSection"
 import UseCasesSection from "@/components/UseCasesSection"
-import TestimonialsSection from "@/components/TestimonialsSection"
-import HowItWorksSection from "@/components/HowItWorksSection"
 import IntegrationsSection from "@/components/IntegrationsSection"
-import BecomingSuperhuman from "@/components/BecomingSuperhuman"
+import HowItWorks from "@/components/HowItWorks"
+import MiniTestimonials from "@/components/MiniTestimonials"
+import MetricsSection from "@/components/MetricsSection"
+import ScrollMarquee from "@/components/ScrollMarquee"
 import FAQSection from "@/components/FAQSection"
 import FinalCTA from "@/components/FinalCTA"
 import Footer from "@/components/Footer"
@@ -18,17 +16,25 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
-      <LogoCloud />
-      <SuperhumanSuite />
+      <MiniTestimonials />
       <MetricsSection />
-      <BeforeAfterSection />
+      {/* 3. Segmentação de Audiência */}
       <div id="solucoes">
         <UseCasesSection />
       </div>
-      <TestimonialsSection />
-      <HowItWorksSection />
+
+      <ScrollMarquee />
+
+      {/* 2. Comparativo: Nós vs Eles */}
+      <ComparisonSection />
+      
+      {/* 3. Como funciona — 3 passos */}
+      <HowItWorks />
+
+      {/* 4. Ecossistema */}
       <IntegrationsSection />
-      <BecomingSuperhuman />
+      
+      {/* 7. Fechamento e Objeções */}
       <FAQSection />
       <FinalCTA />
       <Footer />

@@ -478,7 +478,7 @@ export function IntegrationsOrbit() {
           </svg>
         </div>
         <div style={{ textAlign: "center", marginTop: 4 }}>
-          <div style={{ fontSize: 15, fontWeight: 700, color: "rgba(255,255,255,0.92)", letterSpacing: "-0.02em" }}>SuperAI</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: "rgba(255,255,255,0.92)", letterSpacing: "-0.02em" }}>MoltoChat</div>
           <div style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", marginTop: 2, letterSpacing: "0.06em", textTransform: "uppercase" }}>Hub Central</div>
         </div>
       </div>

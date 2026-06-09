@@ -105,18 +105,18 @@ function InboxMockup() {
       <div className="flex-1 flex flex-col relative bg-[#05050A]">
         <motion.div variants={itemVariants} className="p-4 border-b border-white/10 flex justify-between items-center bg-[#0D0D14]">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-green-400 to-blue-500 p-[2px]">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#266BB9]/50 to-[#266BB9] p-[2px]">
               <div className="w-full h-full bg-[#111] rounded-full border border-[#111] overflow-hidden"><img src="https://i.pravatar.cc/150?img=11" alt="Marcos"/></div>
             </div>
             <div>
               <p className="text-[12px] font-bold text-white">Marcos Silva</p>
               <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                <span className="w-1.5 h-1.5 bg-[#266BB9] rounded-full animate-pulse"></span>
                 <p className="text-[9px] text-white/40">Online agora</p>
               </div>
             </div>
           </div>
-          <div className="px-3 py-1.5 bg-green-500/20 text-green-400 text-[10px] font-bold rounded-lg border border-green-500/20 flex items-center gap-1.5">
+          <div className="px-3 py-1.5 bg-[#266BB9]/20 text-[#266BB9] text-[10px] font-bold rounded-lg border border-[#266BB9]/20 flex items-center gap-1.5">
             <span className="text-lg leading-none mb-[2px]">🔥</span> Lead Quente
           </div>
         </motion.div>
@@ -129,7 +129,7 @@ function InboxMockup() {
           </motion.div>
           <motion.div variants={itemVariants} className="self-center my-1 px-4 py-1.5 bg-[#7C6FF5]/10 border border-[#7C6FF5]/20 rounded-full flex items-center gap-2 relative z-10 backdrop-blur-sm">
             <div className="w-4 h-4 rounded-full bg-[#7C6FF5] flex items-center justify-center"><span className="text-white text-[8px] font-bold">S</span></div>
-            <span className="text-[10px] text-[#A9A0FF] font-medium">SuperAI assumiu o atendimento</span>
+            <span className="text-[10px] text-[#A9A0FF] font-medium">MoltoChat assumiu o atendimento</span>
           </motion.div>
           <motion.div variants={itemVariants} className="self-end bg-gradient-to-br from-[#7C6FF5]/20 to-[#5a4cdb]/20 border border-[#7C6FF5]/30 px-4 py-3 rounded-2xl rounded-tr-none max-w-[85%] shadow-[0_5px_20px_rgba(124,111,245,0.15)] relative z-10 backdrop-blur-sm">
             <p className="text-[11px] text-white">Olá Marcos! Claro, adoraríamos ajudar. Quantos pacientes vocês atendem em média por mês?</p>
@@ -138,12 +138,12 @@ function InboxMockup() {
             <p className="text-[11px] text-white/90">Cerca de 300 pacientes.</p>
           </motion.div>
           
-          <motion.div variants={scaleVariants} className="self-center mt-2 px-4 py-2.5 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-xl flex items-center gap-3 relative z-10 shadow-[0_0_30px_rgba(74,222,128,0.1)]">
-            <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
+          <motion.div variants={scaleVariants} className="self-center mt-2 px-4 py-2.5 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-[#266BB9]/30 rounded-xl flex items-center gap-3 relative z-10 shadow-[0_0_30px_rgba(74,222,128,0.1)]">
+            <div className="w-8 h-8 rounded-full bg-[#266BB9]/20 flex items-center justify-center">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>
             </div>
             <div>
-              <span className="text-[11px] font-bold text-green-400 block mb-0.5">Qualificação Concluída</span>
+              <span className="text-[11px] font-bold text-[#266BB9] block mb-0.5">Qualificação Concluída</span>
               <span className="text-[9px] text-white/60">Handoff automático para vendas</span>
             </div>
           </motion.div>
@@ -157,9 +157,9 @@ function FlowMockup() {
   return (
     <motion.div variants={containerVariants} initial="hidden" animate="show" className="w-full h-full bg-[#0D0D14] rounded-2xl border border-white/10 overflow-hidden flex flex-col relative shadow-2xl">
       <motion.div variants={itemVariants} className="p-4 border-b border-white/10 bg-[#11111A] flex gap-3 items-center">
-        <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-        <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-        <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+        <div className="w-3 h-3 rounded-full bg-white/20/80"></div>
+        <div className="w-3 h-3 rounded-full bg-white/20/80"></div>
+        <div className="w-3 h-3 rounded-full bg-[#266BB9]/80"></div>
         <div className="mx-2 h-4 w-px bg-white/10"></div>
         <div className="px-3 py-1.5 bg-white/5 rounded-md text-[10px] font-medium text-white/80 hover:bg-white/10 transition cursor-pointer">Blocos</div>
         <div className="px-3 py-1.5 bg-gradient-to-r from-[#7C6FF5] to-[#5a4cdb] rounded-md text-[10px] font-bold text-white shadow-[0_0_15px_rgba(124,111,245,0.4)]">Agente IA</div>
@@ -186,7 +186,7 @@ function FlowMockup() {
         </svg>
 
         <motion.div variants={scaleVariants} className="absolute top-[140px] left-1/2 -translate-x-1/2 w-[240px] bg-gradient-to-br from-[#7C6FF5]/10 to-[#11111A] border border-[#7C6FF5]/40 rounded-xl p-4 shadow-[0_10px_30px_rgba(124,111,245,0.15)] z-10 backdrop-blur-md">
-          <div className="absolute -top-2 -right-2 w-4 h-4 bg-green-500 rounded-full border-2 border-[#111] animate-pulse"></div>
+          <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#266BB9] rounded-full border-2 border-[#111] animate-pulse"></div>
           <div className="flex items-center gap-3 mb-3">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#7C6FF5] to-[#5a4cdb] flex items-center justify-center shadow-lg">
               <span className="text-white font-bold text-[12px]">AI</span>
@@ -211,18 +211,18 @@ function FlowMockup() {
           </div>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="absolute top-[260px] left-[15%] w-[140px] bg-[#11111A]/80 backdrop-blur-md border border-green-500/30 rounded-xl p-3 shadow-lg z-10">
+        <motion.div variants={itemVariants} className="absolute top-[260px] left-[15%] w-[140px] bg-[#11111A]/80 backdrop-blur-md border border-[#266BB9]/30 rounded-xl p-3 shadow-lg z-10">
           <div className="flex items-center justify-center gap-1.5 mb-1">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>
-            <p className="text-[10px] font-bold text-green-400">Score &gt; 70</p>
+            <p className="text-[10px] font-bold text-[#266BB9]">Score &gt; 70</p>
           </div>
           <p className="text-[9px] text-white/60 text-center">Transferir p/ Vendas</p>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="absolute top-[260px] right-[15%] w-[140px] bg-[#11111A]/80 backdrop-blur-md border border-red-500/30 rounded-xl p-3 shadow-lg z-10">
+        <motion.div variants={itemVariants} className="absolute top-[260px] right-[15%] w-[140px] bg-[#11111A]/80 backdrop-blur-md border border-white/20/30 rounded-xl p-3 shadow-lg z-10">
           <div className="flex items-center justify-center gap-1.5 mb-1">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F87171" strokeWidth="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            <p className="text-[10px] font-bold text-red-400">Score &lt; 70</p>
+            <p className="text-[10px] font-bold text-white/80">Score &lt; 70</p>
           </div>
           <p className="text-[9px] text-white/60 text-center">Nutrição Automática</p>
         </motion.div>
@@ -239,10 +239,10 @@ function QualificationMockup() {
       <motion.div variants={scaleVariants} className="w-full max-w-[320px] bg-[#11111A]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 relative z-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
         <div className="flex items-center gap-4 border-b border-white/10 pb-5 mb-5">
           <div className="relative">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-green-400 to-blue-500 p-[2px]">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#266BB9]/50 to-[#266BB9] p-[2px]">
               <div className="w-full h-full bg-[#111] rounded-full border border-[#111] overflow-hidden"><img src="https://i.pravatar.cc/150?img=11" alt="Marcos"/></div>
             </div>
-            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#111] rounded-full flex items-center justify-center"><div className="w-3 h-3 bg-green-500 rounded-full"></div></div>
+            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#111] rounded-full flex items-center justify-center"><div className="w-3 h-3 bg-[#266BB9] rounded-full"></div></div>
           </div>
           <div>
             <h4 className="text-[15px] font-bold text-white mb-0.5">Marcos Silva</h4>
@@ -255,7 +255,7 @@ function QualificationMockup() {
         <div className="space-y-4">
           <motion.div variants={itemVariants} className="flex justify-between items-center p-2 rounded-lg hover:bg-white/5 transition">
             <span className="text-[11px] text-white/50 flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Lead Score</span>
-            <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-400 text-[11px] font-bold px-3 py-1 rounded-full border border-green-500/30 shadow-[0_0_15px_rgba(74,222,128,0.2)]">92/100 (Hot)</div>
+            <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-[#266BB9] text-[11px] font-bold px-3 py-1 rounded-full border border-[#266BB9]/30 shadow-[0_0_15px_rgba(74,222,128,0.2)]">92/100 (Hot)</div>
           </motion.div>
           
           <motion.div variants={itemVariants} className="flex justify-between items-center p-2 rounded-lg hover:bg-white/5 transition">

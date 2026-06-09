@@ -24,13 +24,13 @@ function LogoItem({ logo }: { logo: typeof LOGOS[0] }) {
         src={logo.image}
         alt={logo.name}
         onError={() => setError(true)}
-        className="h-9 md:h-12 w-auto grayscale transition-all hover:grayscale-0 opacity-60 hover:opacity-100"
+        className="h-9 md:h-12 w-auto grayscale transition-all hover:grayscale-0 opacity-40 hover:opacity-100"
       />
     )
   }
 
   return (
-    <span className="text-[26px] md:text-[34px] font-bold text-[#1A1A1A] tracking-tighter opacity-20 hover:opacity-100 transition-opacity">
+    <span className="text-[26px] md:text-[34px] font-bold text-white tracking-tighter opacity-10 hover:opacity-50 transition-opacity">
       {logo.name}
     </span>
   )
@@ -102,17 +102,21 @@ export default function LogoCloud() {
   }
 
   return (
-    <section className="bg-white py-24 overflow-hidden border-b border-[#1A1A1A]/5">
-      <div className="container-xl max-w-6xl mb-4 text-center">
+    <section className="bg-[#020204] py-20 overflow-hidden border-b border-white/5 relative">
+      {/* Gradients to fade edges */}
+      <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-[#020204] to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-[#020204] to-transparent z-10 pointer-events-none" />
+
+      <div className="container-xl max-w-6xl mb-6 text-center">
         <Reveal>
-          <p className="text-[11px] font-bold text-[#1A1A1A]/20 uppercase tracking-[0.3em]">
-            Atendendo empresas de todos os segmentos
+          <p className="text-[12px] font-bold text-white/30 uppercase tracking-[0.2em]">
+            Aprovado por líderes de operação em diversos setores
           </p>
         </Reveal>
       </div>
 
       <div
-        className="relative overflow-hidden cursor-grab active:cursor-grabbing select-none py-12"
+        className="relative overflow-hidden cursor-grab active:cursor-grabbing select-none py-8"
         onPointerDown={handlePointerDown}
       >
         <motion.div
@@ -124,7 +128,7 @@ export default function LogoCloud() {
           {[...LOGOS, ...LOGOS, ...LOGOS].map((logo, i) => (
             <div
               key={i}
-              className="flex items-center justify-center transition-opacity opacity-30 hover:opacity-100"
+              className="flex items-center justify-center transition-opacity"
             >
               <LogoItem logo={logo} />
             </div>

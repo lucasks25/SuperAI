@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import SmoothScroll from "@/components/SmoothScroll"
+import CookieBanner from "@/components/CookieBanner"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -10,12 +11,12 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "SuperAI — Agentes de IA para atendimento, vendas e automação",
+  title: "MoltoChat — Agentes de IA para atendimento, vendas e automação",
   description:
-    "Crie agentes inteligentes para WhatsApp que respondem, qualificam, agendam e transferem para atendimento humano quando necessário.",
+    "Atenda, qualifique e converta em milissegundos com Agentes de IA que operam 24/7.",
   keywords: "IA, WhatsApp, agentes de IA, automação, atendimento, CRM, agendamento",
   openGraph: {
-    title: "SuperAI — Agentes de IA que trabalham como parte da sua equipe",
+    title: "MoltoChat — Agentes de IA que trabalham como parte da sua equipe",
     description:
       "Automatize atendimento, vendas e agendamentos com agentes inteligentes treinados para o seu negócio.",
     type: "website",
@@ -30,6 +31,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SmoothScroll>
           {children}
         </SmoothScroll>
+        
+        {/* Global Components */}
+        <CookieBanner />
       </body>
     </html>
   )

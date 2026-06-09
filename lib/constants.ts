@@ -1,5 +1,5 @@
 // ─── Brand ──────────────────────────────────────────────────────────────────
-export const BRAND_NAME = "SuperAI"
+export const BRAND_NAME = "MoltoChat"
 export const BRAND_SLOGAN = "Agentes de IA que trabalham como parte da sua equipe"
 export const BRAND_DESCRIPTION =
   "Automatize atendimento, vendas e agendamentos com agentes inteligentes treinados para o seu negócio."
@@ -29,7 +29,7 @@ export const NAV_LINKS = [
   { label: "Soluções", href: "#solucoes" },
   { label: "Como funciona", href: "#como-funciona" },
   { label: "Integrações", href: "#integracoes" },
-  { label: "Planos", href: "#planos" },
+  { label: "Planos", href: "/planos" },
   { label: "FAQ", href: "#faq" },
 ]
 
@@ -77,23 +77,18 @@ export const FEATURES = [
 export const HOW_IT_WORKS_STEPS = [
   {
     number: "01",
-    title: "Mapeamento",
-    text: "Entendemos seu atendimento, perguntas frequentes, serviços, horários e regras.",
+    title: "Captura Instântanea",
+    text: "Sua IA responde em segundos a qualquer lead que chegue pelo WhatsApp, Instagram ou site, 24 horas por dia.",
   },
   {
     number: "02",
-    title: "Treinamento",
-    text: "Criamos a base de conhecimento e definimos o tom de voz do agente.",
+    title: "Qualificação Inteligente",
+    text: "O agente conduz uma conversa natural para coletar dados, entender dores e classificar o lead no CRM.",
   },
   {
     number: "03",
-    title: "Integração",
-    text: "Conectamos WhatsApp, agenda, CRM, banco de dados ou automações necessárias.",
-  },
-  {
-    number: "04",
-    title: "Otimização",
-    text: "Acompanhamos conversas reais e melhoramos o agente com base nos atendimentos.",
+    title: "Agendamento & Fechamento",
+    text: "Leads qualificados são agendados direto no calendário da sua equipe de vendas ou recebem o link de checkout.",
   },
 ]
 
@@ -144,32 +139,40 @@ export const PRICING_PLANS = [
 // ─── FAQ ──────────────────────────────────────────────────────────────────────
 export const FAQ_ITEMS = [
   {
-    q: "A IA substitui minha equipe?",
-    a: "Não necessariamente. Ela reduz atendimentos repetitivos, organiza informações e chama o humano quando necessário.",
+    q: "A IA substitui minha equipe de vendas ou suporte?",
+    a: "Não. A IA atua como a linha de frente invisível da sua empresa. Ela qualifica, agenda e tira dúvidas básicas. Casos complexos ou fechamentos high-ticket são passados para sua equipe no momento exato, com todo o contexto.",
   },
   {
-    q: "Funciona com WhatsApp?",
-    a: "Sim. O foco principal é atendimento via WhatsApp, com possibilidade de integrar agenda, CRM e automações.",
+    q: "Quão rápido o Agente consegue responder?",
+    a: "Em milissegundos. Nossos Agentes garantem tempo de resposta zero (SLA instantâneo), o que reduz as taxas de abandono e aumenta as conversões do WhatsApp.",
   },
   {
-    q: "A IA consegue ouvir áudios?",
-    a: "Sim. O agente pode interpretar mensagens de voz e responder em texto ou áudio, dependendo da configuração.",
+    q: "A IA corre o risco de inventar informações (alucinar)?",
+    a: "Não. Diferente do ChatGPT comum, utilizamos a arquitetura RAG (Retrieval-Augmented Generation). O Agente só responde com base nos manuais, sites e regras que você aprovou.",
   },
   {
-    q: "Posso treinar a IA para o meu negócio?",
-    a: "Sim. Cada empresa pode ter sua própria base de conhecimento, tom de voz, regras e fluxos.",
+    q: "Como funciona a integração com meu CRM ou Calendário?",
+    a: "A integração é nativa. Assim que o Agente qualifica o lead, ele cria o card no CRM (HubSpot, Salesforce, RD Station) e/ou verifica os horários disponíveis da sua equipe no Google Calendar para fazer o agendamento real.",
   },
   {
-    q: "Dá para pausar a IA e assumir manualmente?",
-    a: "Sim. Quando o atendimento humano é ativado, a IA para de responder aquela conversa.",
+    q: "É difícil treinar ou implementar?",
+    a: "Pelo contrário. Você não precisa saber programar. Nós conectamos sua base de conhecimento e ajustamos os fluxos e integrações iniciais para você começar a operar em dias, não meses.",
   },
   {
-    q: "Vocês fazem integrações personalizadas?",
-    a: "Sim. Podemos conectar com agenda, CRM, banco de dados, planilhas, webhooks e outras ferramentas.",
+    q: "Posso assumir a conversa no meio do atendimento?",
+    a: "Sim! A qualquer momento você ou sua equipe podem intervir. O Agente de IA pausa automaticamente quando detecta que um humano assumiu o chat (Human Handoff).",
   },
   {
-    q: "Tem planos com preço fixo?",
-    a: "Os projetos podem variar conforme integrações, volume e complexidade. Por isso, o ideal é solicitar uma proposta.",
+    q: "Onde o MoltoChat pode ser conectado?",
+    a: "Nossos agentes funcionam perfeitamente no WhatsApp Business, Instagram DM, Facebook Messenger e através do Webchat direto no seu site institucional.",
+  },
+  {
+    q: "Qual a diferença do MoltoChat para um Chatbot tradicional de botões?",
+    a: "O chatbot antigo força o cliente a digitar números (1 para vendas, 2 para suporte) e é engessado. A nossa IA interpreta áudios, textos longos, entende intenções complexas e conversa de forma idêntica a um humano.",
+  },
+  {
+    q: "O que acontece se a IA não souber a resposta?",
+    a: "O Agente é treinado para ser educado e humilde. Se uma pergunta fugir da base de conhecimento que você forneceu, ele diz que não possui a informação no momento e transfere o atendimento para a equipe humana.",
   },
 ]
 

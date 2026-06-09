@@ -1,6 +1,8 @@
 "use client"
 
-import { Player } from "@remotion/player"
+import dynamic from "next/dynamic"
+const Player = dynamic(() => import("@remotion/player").then((mod) => mod.Player), { ssr: false })
+
 import { IntegrationsOrbit } from "@/remotion/src/IntegrationsOrbit"
 
 export default function IntegrationsPlayer() {

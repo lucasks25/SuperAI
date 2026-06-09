@@ -50,7 +50,7 @@ export default function ProductSuite() {
         <SectionHeader
           badge="Plataforma completa"
           title="Tudo que sua empresa precisa para automatizar conversas"
-          subtitle="A SuperAI combina atendimento, vendas, agendamento, voz e integrações em agentes inteligentes treinados para cada negócio."
+          subtitle="A MoltoChat combina atendimento, vendas, agendamento, voz e integrações em agentes inteligentes treinados para cada negócio."
           className="mb-16"
         />
 

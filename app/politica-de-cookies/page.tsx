@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Política de Cookies | SuperAI",
+  title: "Política de Cookies | MoltoChat",
   description: "Nossa Política de Cookies",
 };
 

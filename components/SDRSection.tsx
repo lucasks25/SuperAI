@@ -90,7 +90,7 @@ export default function SDRSection() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-[12px] font-semibold text-white">Assistente SuperAI</p>
+                  <p className="text-[12px] font-semibold text-white">Assistente MoltoChat</p>
                   <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#4ADE80]" />
                     <p className="text-[10px] text-white/60">online agora</p>

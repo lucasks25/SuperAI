@@ -1,43 +1,59 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState, useEffect } from "react"
+import { Cookie } from "lucide-react"
 
 export default function CookieBanner() {
-  const [showBanner, setShowBanner] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    // Check if user already accepted cookies
-    const cookieConsent = localStorage.getItem("cookie_consent");
-    if (!cookieConsent) {
-      setShowBanner(true);
-    }
-  }, []);
+    // Forçando o banner a aparecer SEMPRE para testes (ignorando o localStorage)
+    const timer = setTimeout(() => setIsVisible(true), 500)
+    return () => clearTimeout(timer)
+  }, [])
 
-  const acceptCookies = () => {
-    localStorage.setItem("cookie_consent", "true");
-    setShowBanner(false);
-  };
+  const handleAccept = () => {
+    localStorage.setItem("cookie_consent", "accepted")
+    setIsVisible(false)
+  }
 
-  if (!showBanner) return null;
+  const handleDecline = () => {
+    localStorage.setItem("cookie_consent", "declined")
+    setIsVisible(false)
+  }
+
+  if (!isVisible) return null
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white dark:bg-[#111111] border-t border-gray-200 dark:border-gray-800 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div className="text-sm text-gray-600 dark:text-gray-300">
-        Utilizamos cookies essenciais e tecnologias semelhantes para melhorar a sua experiência na SuperAI, 
-        analisar o tráfego e personalizar conteúdo. Ao continuar navegando, você concorda com estas condições.{" "}
-        <Link href="/politica-de-cookies" className="text-blue-600 dark:text-blue-400 hover:underline">
-          Ler Política de Cookies
-        </Link>.
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-32px)] max-w-[900px] bg-gray-300 border-[3px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded-xl p-5 md:p-6 flex flex-col md:flex-row items-center gap-4 md:gap-6 animate-in slide-in-from-bottom-12 fade-in duration-500">
+      
+      {/* Text Section */}
+      <div className="flex items-center gap-4 flex-1">
+        <div className="bg-black p-2.5 rounded-full shrink-0 hidden sm:block">
+          <Cookie size={24} className="text-white" />
+        </div>
+        <p className="text-[14px] md:text-[15px] font-medium text-black/90 leading-snug">
+          <strong className="font-black uppercase tracking-widest text-black block text-[12px] mb-1">Aviso de Cookies</strong>
+          Utilizamos cookies para analisar o tráfego e garantir a melhor experiência na nossa plataforma de IA.
+        </p>
       </div>
-      <div className="flex-shrink-0 flex gap-3 w-full sm:w-auto">
+
+      {/* Action Buttons */}
+      <div className="flex items-center gap-3 w-full md:w-auto shrink-0 mt-2 md:mt-0">
         <button 
-          onClick={acceptCookies}
-          className="w-full sm:w-auto px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition-colors"
+          onClick={handleDecline}
+          className="flex-1 md:flex-none py-3 px-5 bg-transparent text-black border-2 border-black rounded-full font-black uppercase tracking-widest text-[12px] hover:bg-black/5 transition-colors"
         >
-          Aceitar e Fechar
+          Apenas Essenciais
+        </button>
+        <button 
+          onClick={handleAccept}
+          className="flex-1 md:flex-none py-3 px-6 bg-black text-white rounded-full font-black uppercase tracking-widest text-[12px] hover:bg-gray-900 transition-colors shadow-[0_5px_15px_rgba(0,0,0,0.2)]"
+        >
+          Aceitar Todos
         </button>
       </div>
+      
     </div>
-  );
+  )
 }

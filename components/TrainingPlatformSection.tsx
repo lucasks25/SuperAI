@@ -72,10 +72,10 @@ export default function TrainingPlatformSection() {
             >
               {/* Device bar */}
               <div className="flex items-center gap-1.5 px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.02)" }}>
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
-                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
-                <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
-                <span className="ml-2 text-[10px] text-[#7D8DB8]">SuperAI — Treinamento do Agente</span>
+                <div className="w-2.5 h-2.5 rounded-full bg-white/20/50" />
+                <div className="w-2.5 h-2.5 rounded-full bg-white/20/50" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#266BB9]/50" />
+                <span className="ml-2 text-[10px] text-[#7D8DB8]">MoltoChat — Treinamento do Agente</span>
               </div>
 
               <div className="flex min-h-[400px]">
